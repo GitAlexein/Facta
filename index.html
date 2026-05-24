@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="it">
+    <head>
+        <title>Praxisum Facta</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <!--Montserrat font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <!--DM Sans font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="fixed top">
+            <h1 class="title"><span id="greeting">Buongiorno</span> <span id="name">Alessio</span>,</h1>
+            <p>Comincia a completare i tuoi obiettivi!</p>
+        </div>
+        <div class="tasks">
+            <div class="task-item">
+                <label class="checkbox-wrapper">
+                    <input type="checkbox" class="task-checkbox">
+                    <img src="assets/Check empty.svg" alt="" class="checkbox-icon unchecked">
+                    <img src="assets/Check full.svg" alt="" class="checkbox-icon checked">
+                </label>
+                <span class="task">Fare la lavatrice</span>
+                <span><img src="assets/Trash.svg" height="24px" width="auto" alt="Cancella factum"></span>
+            </div>
+        </div>
+        <div class="fixed bottom">
+            <button>
+                <span class="testo-btn">Aggiungi un obiettivo</span>
+                <span><img src="assets/Plus.svg" aria-hidden="true"></span>
+            </button>
+        </div>
+    </body>
+</html>

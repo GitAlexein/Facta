@@ -1,0 +1,51 @@
+body {
+    height: 100dvh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #190933;
+    /*FONTs*/
+    font-family: DM Sans;
+    font-size: 16px;
+    color: white;
+}
+
+
+/* TEXT */
+
+h1,h2,h3,h4,h5,h6{
+    font-family: Montserrat;
+    margin: 0;
+}
+
+
+/* PANELS */
+
+.panel {
+    padding: 32px;
+    background-color: #190933;
+    border-bottom: 1px solid #D3C1EB40;
+}
+
+
+/* TASK */
+
+.content {
+    flex: 1;    
+}
+
+.task {
+    display: flex;
+    
+}
+
+
+/* TASK STATE */
+
+.t-todo {
+    
+}
+
+.t-done {
+    color: #ffffff80;
+}
