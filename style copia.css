@@ -11,7 +11,17 @@ body {
     color: white;
 }
 
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+} 
 
+.task-item span {
+    display: flex;
+    align-items: center;
+}
 /* TEXT */
 
 h1,h2,h3,h4,h5,h6{
