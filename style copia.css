@@ -1,6 +1,7 @@
 body {
     height: 100dvh;
     margin: 0;
+    padding: 32px;
     display: flex;
     flex-direction: column;
     background-color: #190933;
@@ -22,7 +23,7 @@ h1,h2,h3,h4,h5,h6{
 /* PANELS */
 
 .panel {
-    padding: 32px;
+    padding: 0 0 16px 0;
     background-color: #190933;
     border-bottom: 1px solid #D3C1EB40;
 }
@@ -31,21 +32,46 @@ h1,h2,h3,h4,h5,h6{
 /* TASK */
 
 .content {
-    flex: 1;    
+    flex: 1;   
 }
 
 .task {
-    display: flex;
-    
+    margin-top: 16px;
+    margin-bottom: 16px;
+    gap: 8px;
+}
+
+.task-text {
+    flex: 1;
 }
 
 
 /* TASK STATE */
 
-.t-todo {
-    
+.task-new {
+    padding: 16px;
+    border-radius: 16px;
 }
 
-.t-done {
+.task-done {
     color: #ffffff80;
+}
+
+
+/* CHECKBOX STATE */
+
+.task-checkbox {
+    display: none;
+}
+
+.checkbox-icon.done {
+    display: none;
+}
+
+.task-checkbox:checked ~ .checkbox-icon.todo {
+    display: none;
+}
+
+.task-checkbox:checked ~ .checkbox-icon.done {
+    display: block;
 }
