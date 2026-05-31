@@ -1,3 +1,21 @@
+body {
+    padding: 32px;
+    background-color: #190933;
+    color: white;
+}
+
 input {
     display: none;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#taskView {
+    margin-bottom: 32px;
 }
