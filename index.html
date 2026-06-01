@@ -3,16 +3,38 @@
 <html lang="it">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Facta Javascript Testing</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style copia.css">
+        <!--Montserrat-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <!--DM Sans-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div id="taskView">
-            
+        <div class="panel panel-top">
+            <h1><span id="greeting">Buongiorno</span> <span id="name">Alessio</span>,</h1>
+            <span id="encouragement">Comincia a completare i tuoi obiettivi!</span>
         </div>
-        <div>
-            <button id="buttonTaskNew">Aggiungi un obiettivo</button>
-            <input type="text" id="inputTaskNew">
+        <div class="task-list">
+            <div class="task">
+                <label class="label-checkbox">
+                    <input type="checkbox" class="task-checkbox">
+                    <img src="assets/checkbox todo.svg" alt="" class="checkbox-icon todo">
+                    <img src="assets/checkbox done.svg" alt="" class="checkbox-icon done">
+                </label>
+            </div>
+        </div>
+        <div class="panel panel-bottom">
+            <button class="button button-secondary">
+                <img src="assets/settings.svg" alt="Apri le impostazioni">
+            </button>
+            <button class="button button-cta">
+                <span>Aggiungi un obiettivo</span>
+                <span style="display: flex;"><img src="assets/plus.svg" alt=""></span>
+            </button>
         </div>
         <script src="index.js"></script>
     </body>
