@@ -1,7 +1,6 @@
 body {
     height: 100dvh;
     margin: 0;
-    padding: 32px;
     display: flex;
     flex-direction: column;
     background-color: #190933;
@@ -11,17 +10,7 @@ body {
     color: white;
 }
 
-.checkbox-wrapper {
-    display: flex;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-} 
 
-.task-item span {
-    display: flex;
-    align-items: center;
-}
 /* TEXT */
 
 h1,h2,h3,h4,h5,h6{
@@ -33,21 +22,63 @@ h1,h2,h3,h4,h5,h6{
 /* PANELS */
 
 .panel {
-    padding: 0 0 16px 0;
+    position: sticky;
     background-color: #190933;
+}
+
+.panel-top {
+    top: 0;
+    padding: 32px 32px 16px 32px;
     border-bottom: 1px solid #D3C1EB40;
+}
+
+.panel-bottom {
+    bottom: 0;
+    padding: 16px 32px 32px 32px;
+    border-top: 1px solid #D3C1EB40;
+    display: flex;
+    gap: 8px;
+}
+
+
+/* BUTTONs */
+
+button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 99px;
+    padding: 16px;
+    cursor: pointer;
+    /* FONT */
+    font-size: inherit;
+    font-weight: 600;
+}
+
+.button-cta {
+    width: 100%;
+    background-color: #BB97F8;
+    border: 2px solid #8C63D2;
+}
+
+.button-secondary {
+    width: fit-content;
+    background-color: transparent;
+    border: 2px solid #8C63D2;
 }
 
 
 /* TASK */
 
-.content {
+.task-list {
+    padding: 0 32px 0 32px;
     flex: 1;   
 }
 
 .task {
     margin-top: 16px;
     margin-bottom: 16px;
+    display: flex;
     gap: 8px;
 }
 
@@ -68,7 +99,15 @@ h1,h2,h3,h4,h5,h6{
 }
 
 
-/* CHECKBOX STATE */
+/* CHECKBOX */
+
+.label-checkbox {
+    display: flex;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+} 
 
 .task-checkbox {
     display: none;
