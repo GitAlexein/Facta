@@ -1,138 +1,126 @@
 body {
-    margin: 0;
     height: 100dvh;
-    background-color: #190933;
+    margin: 0;
     display: flex;
     flex-direction: column;
-}
-
-h1,h2,h3,h4,h5,h6 {
-    margin: 0;
-    color: white;
-    font-family: Montserrat;
-}
-
-h1 {
-    font-size: 32px;
-}
-
-.title  {
-    font-family: Montserrat;
-    font-size: 32px;
-    font-weight: 700;
-
-}
-
-.fixed {
-    width: 100%;
     background-color: #190933;
-    padding: 32px;
-    box-sizing: border-box;
+    /*FONTs*/
+    font-family: DM Sans;
+    font-size: 16px;
+    color: white;
 }
 
-.fixed.top {
+
+/* TEXT */
+
+h1,h2,h3,h4,h5,h6{
+    font-family: Montserrat;
+    margin: 0;
+}
+
+
+/* PANELS */
+
+.panel {
     position: sticky;
+    background-color: #190933;
+}
+
+.panel-top {
     top: 0;
-    z-index: 10;
-    padding-bottom: 16px;
+    padding: 32px 32px 16px 32px;
     border-bottom: 1px solid #D3C1EB40;
 }
 
-.fixed.bottom {
-    position: sticky;
+.panel-bottom {
     bottom: 0;
-    z-index: 10;
-    margin-top: auto;
+    padding: 16px 32px 32px 32px;
     border-top: 1px solid #D3C1EB40;
-    padding-top: 16px;
-}
-
-.tasks {
-    flex: 1;
-    overflow-y: auto;
-    padding: 0 32px 0 32px;
     display: flex;
-    flex-direction: column;
-    gap: 16px;
+    gap: 8px;
 }
 
-p, .task {
-    margin: 0;
-    color: white;
-    font-family: DM Sans;
-    font-size: 16px;
-}
+
+/* BUTTONs */
 
 button {
-    width: 100%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 8px;
-    padding: 16px;
+    align-items: center;
     border-radius: 99px;
-    background-color: #BB97F8;
-    border: 2px solid #8C63D2;
+    padding: 16px;
     cursor: pointer;
-}
-
-.testo-btn {
-    font-family: Montserrat;
-    font-size: 16px;
+    /* FONT */
+    font-size: inherit;
     font-weight: 600;
 }
 
-.task-item span {
+.button-cta {
+    width: 100%;
+    background-color: #BB97F8;
+    border: 2px solid #8C63D2;
+}
+
+.button-secondary {
+    width: fit-content;
+    background-color: transparent;
+    border: 2px solid #8C63D2;
+}
+
+
+/* TASK */
+
+.task-list {
+    padding: 0 32px 0 32px;
+    flex: 1;   
+}
+
+.task {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 8px;
+}
+
+.task-text {
+    flex: 1;
+}
+
+
+/* TASK STATE */
+
+.task-new {
+    padding: 16px;
+    border-radius: 16px;
+}
+
+.task-done {
+    color: #ffffff80;
+}
+
+
+/* CHECKBOX */
+
+.label-checkbox {
     display: flex;
     align-items: center;
-}
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+} 
 
 .task-checkbox {
     display: none;
 }
 
-.checkbox-icon {
-    display: block;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-
-.checkbox-icon.checked {
+.checkbox-icon.done {
     display: none;
 }
 
-.task-checkbox:checked ~ .checkbox-icon.unchecked {
+.task-checkbox:checked ~ .checkbox-icon.todo {
     display: none;
 }
 
-.task-checkbox:checked ~ .checkbox-icon.checked {
+.task-checkbox:checked ~ .checkbox-icon.done {
     display: block;
-}
-
-.task-checkbox:checked {
-   background-color: white;
-}
-
-button span {
-    color: black;
-    display: flex;
-    align-items: center;
-}
-
-.task-item {
-    margin-top: 16px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    border-bottom: 1px solid #D3C1EB40;
-}
-
-.task {
-    width: 100%;
-}
-
-.complete {
-    text-decoration: line-through;
 }
