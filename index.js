@@ -24,10 +24,15 @@ buttonTaskNew.addEventListener("click", function() {
 /* SAVING INPUT IN LOCAL STORAGE FUNCTION*/
 inputTaskNew.addEventListener("keydown", function(e) {
     if (e.key === "Enter") {
-        taskList.push(inputTaskNew.value)
-        localStorage.setItem("taskList", JSON.stringify(taskList))
-        renderTaskList()
-        inputTaskNew.value = ""
+        e.preventDefault()
+        if (inputTaskNew.value.trim() !== "") {
+            taskList.push(inputTaskNew.value)
+            localStorage.setItem("taskList", JSON.stringify(taskList))
+            renderTaskList()
+            inputTaskNew.value = ""
+        } else {
+            alert("Il testo è vuoto! Prova a scrivere qualcosa.")
+        }
     }
 });
 
@@ -42,15 +47,22 @@ function deleteTask(index) {
 
 /* RENDERING TASK-LIST FUNCTION */
 function renderTaskList() {
-    let taskListView = taskList.map(function(value, index) {
+    let taskListView = taskList.reverse().map(function(value, index) {
         return `
             <div class="task">
-            <p>${value}</p>
-            <span style="cursor: pointer;" onclick="deleteTask(${index})"><img src="assets/trash.svg"></img></span>
-            </div>
+                <label id="labelCheckbox">
+                    <input type="checkbox" class="task-checkbox">
+                    <img src="assets/checkbox todo.svg" alt="" class="checkbox-icon todo">
+                    <img src="assets/checkbox done.svg" alt="" class="checkbox-icon done">
+                </label>
+                <span class="task-text">${value}</span>
+                <button class="button-tertiary" onclick="deleteTask(${index})">
+                    <img src="assets/trash.svg" alt="Elimina questo obiettivo" style="height: 24px; cursor: pointer;">    
+                </button>
+</div>
         `
     });
 
     let taskView = document.getElementById("taskView");
-taskView.innerHTML = taskListView.join(" ");
+    taskView.innerHTML = taskListView.join(" ");
 };

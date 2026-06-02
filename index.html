@@ -2,8 +2,8 @@
 
 <html lang="it">
     <head>
-        <title>Praxisum Facta</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Praxisum Facta</title>
         <link rel="stylesheet" href="style.css">
         <!--Montserrat-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,30 +20,21 @@
             <span id="encouragement">Comincia a completare i tuoi obiettivi!</span>
         </div>
 
-        <div class="task-list">
-            <textarea rows="1" type="text" id="inputNewTask" contenteditable="true"></textarea>
+        <div class="main">
+            <textarea rows="1" type="text" placeholder="Aggiungi un obiettivo"  contenteditable="true" id="inputTaskNew"></textarea>
+            <div class="task-list" id="taskView"></div>
         </div>
 
         <div class="panel panel-bottom">
-            <button class="button button-secondary">
+            <button class="button-secondary">
                 <img src="assets/settings.svg" alt="Apri le impostazioni">
             </button>
-            <button class="button button-primary">
+            <button class="button-primary" id="buttonTaskNew">
                 <span>Aggiungi un obiettivo</span>
                 <span style="display: flex;"><img src="assets/plus.svg" alt=""></span>
             </button>
         </div>
+
+        <script src="index.js"></script>
     </body>
 </html>
-
-<!-- TASK CODE
-
-<div class="task">
-<label class="label-checkbox">
-                    <input type="checkbox" class="task-checkbox">
-                    <img src="assets/checkbox todo.svg" alt="" class="checkbox-icon todo">
-                    <img src="assets/checkbox done.svg" alt="" class="checkbox-icon done">
-                </label>
-</div>
-
--->

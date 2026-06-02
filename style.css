@@ -21,6 +21,13 @@ h1,h2,h3,h4,h5,h6{
 
 /* PANELS */
 
+.main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 16px 32px 16px;
+}
+
 .panel {
     position: sticky;
     background-color: #190933;
@@ -53,6 +60,7 @@ button {
     padding: 16px;
     cursor: pointer;
     transition: ease 75ms;
+    user-select: none;
     /* FONT */
     font-size: inherit;
     font-weight: 600;
@@ -68,8 +76,16 @@ button {
     background-color: transparent;
 }
 
-button:hover {
-    opacity: 50%;
+.button-tertiary {
+    padding: 8px;
+    background: transparent;
+    border: none;
+}
+
+@media (hover:hover) and (pointer:fine) {
+    button:hover {
+        opacity: 50%;
+    }
 }
 
 button:active {
@@ -77,12 +93,22 @@ button:active {
     transform: scale(0.95);
 }
 
+@media (hover:hover) and (pointer:fine) {
+    .button-tertiary:hover {
+        background-color: #D3C1EB40;
+        transform: scale(1.2);
+    }
+}
+
+.button-tertiary:active {
+    background-color: #D3C1EB40;
+    transform: scale(0.95);
+}
+
 /* TASK */
 
-#inputNewTask {
-    /* display: none; */
-    flex: 1;
-    display: block;
+#inputTaskNew {
+    display: none;
     resize: none;
     height: fit-content;
     border-radius: 16px;
@@ -96,7 +122,7 @@ button:active {
     font: inherit;
 }
 
-#inputNewTask:focus {
+#inputTaskNew:focus {
     border: 2px solid #BB97F8;
     background-image: none;
     outline: none;
@@ -104,15 +130,18 @@ button:active {
 
 .task-list {
     display: flex;
-    padding: 16px 32px 16px 32px;
-    flex: 1;   
+    flex-direction: column;
+    flex: 1;
+    padding-bottom: 32px;
 }
 
 .task {
-    margin-top: 16px;
-    margin-bottom: 16px;
     display: flex;
+    padding-top: 16px;
+    padding-bottom: 16px;
     gap: 8px;
+    align-items: center;
+    border-bottom: 1px solid #D3C1EB40;
 }
 
 .task-text {
@@ -134,13 +163,23 @@ button:active {
 
 /* CHECKBOX */
 
-.label-checkbox {
+#labelCheckbox {
     display: flex;
     align-items: center;
     width: 32px;
     height: 32px;
     cursor: pointer;
-} 
+    transition: ease 150ms;
+}
+
+#labelCheckbox:hover {
+    opacity: 50%;
+    transform: scale(1.2);
+}
+
+#labelCheckbox:active {
+    transform: scale(0.9);
+}
 
 .task-checkbox {
     display: none;
