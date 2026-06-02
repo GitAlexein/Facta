@@ -44,34 +44,67 @@ h1,h2,h3,h4,h5,h6{
 /* BUTTONs */
 
 button {
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 99px;
+    border: 2px solid #8C63D2;
     padding: 16px;
     cursor: pointer;
+    transition: ease 75ms;
     /* FONT */
     font-size: inherit;
     font-weight: 600;
 }
 
-.button-cta {
+.button-primary {
     width: 100%;
     background-color: #BB97F8;
-    border: 2px solid #8C63D2;
 }
 
 .button-secondary {
     width: fit-content;
     background-color: transparent;
-    border: 2px solid #8C63D2;
 }
 
+button:hover {
+    opacity: 50%;
+}
+
+button:active {
+    opacity: 50%;
+    transform: scale(0.95);
+}
 
 /* TASK */
 
+#inputNewTask {
+    /* display: none; */
+    flex: 1;
+    display: block;
+    resize: none;
+    height: fit-content;
+    border-radius: 16px;
+    background: transparent;
+    border: none;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='%238C63D2FF' stroke-width='3' stroke-dasharray='6%2c 11' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    padding: 16px;
+    cursor: pointer;
+    /* FONTs */
+    color: white;
+    font: inherit;
+}
+
+#inputNewTask:focus {
+    border: 2px solid #BB97F8;
+    background-image: none;
+    outline: none;
+}
+
 .task-list {
-    padding: 0 32px 0 32px;
+    display: flex;
+    padding: 16px 32px 16px 32px;
     flex: 1;   
 }
 
