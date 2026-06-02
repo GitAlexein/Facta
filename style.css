@@ -1,3 +1,10 @@
+/* FORGET ABOUT YOUR NATIVE STYLES PLS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     height: 100dvh;
     margin: 0;
@@ -21,20 +28,16 @@ h1,h2,h3,h4,h5,h6{
 
 /* PANELS */
 
-.main {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 16px 32px 16px;
-}
-
 .panel {
     position: sticky;
+    align-items: center;
     background-color: #190933;
+    transition: ease 300ms;
 }
 
 .panel-top {
     top: 0;
+    padding-top: calc(16px + env(safe-area-inset-top));
     padding: 32px 32px 16px 32px;
     border-bottom: 1px solid #D3C1EB40;
 }
@@ -50,7 +53,7 @@ h1,h2,h3,h4,h5,h6{
 
 /* BUTTONs */
 
-button {
+.button {
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
@@ -67,8 +70,9 @@ button {
 }
 
 .button-primary {
-    width: 100%;
+    flex: 1;
     background-color: #BB97F8;
+    color: black;
 }
 
 .button-secondary {
@@ -110,20 +114,18 @@ button:active {
 #inputTaskNew {
     display: none;
     resize: none;
-    height: fit-content;
-    border-radius: 16px;
-    background: transparent;
-    border: none;
-    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='%238C63D2FF' stroke-width='3' stroke-dasharray='6%2c 11' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    flex: 1;
+    border-radius: 99px;
     padding: 16px;
-    cursor: pointer;
-    /* FONTs */
-    color: white;
+    background: transparent;
+    border: 2px dashed;
+    border-color:#8C63D2;
     font: inherit;
+    color: white;
 }
 
 #inputTaskNew:focus {
-    border: 2px solid #BB97F8;
+    border: 2px solid #8C63D2;
     background-image: none;
     outline: none;
 }
@@ -132,7 +134,7 @@ button:active {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding-bottom: 32px;
+    padding: 0 32px 32px 32px;
 }
 
 .task {
