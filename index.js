@@ -1,10 +1,18 @@
 /* TOUCH FIX FOR APPLE DEVICES >:( */
-document.body.addEventListener("touchstart", function() {})
+document.body.addEventListener("touchstart", function() {});
+
+// READING GREETING & NAME
+let greeting = document.getElementById("greeting");
+let name = document.getElementById("name");
+
+// DISPLAYING NAME
+name.innerText = localStorage.getItem("name");
 
 /* READING BUTTONs AND INPUT*/
 let buttonTaskNew = document.getElementById("buttonTaskNew");
 let inputTaskNew = document.getElementById("inputTaskNew");
 let buttonSettings = document.getElementById("buttonSettings");
+
 
 /* TASK LIST */
 let taskList = [];

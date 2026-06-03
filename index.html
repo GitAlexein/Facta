@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="it">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,14 +14,14 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div class="panel panel-top">
+        <div class="bar bar-top">
             <h1><span id="greeting">Buongiorno</span> <span id="name">Alessio</span>,</h1>
             <span id="encouragement">Comincia a completare i tuoi obiettivi!</span>
         </div>
 
             <div class="task-list" id="taskView"></div>
 
-        <div class="panel panel-bottom">
+        <div class="bar bar-bottom" style="flex-direction: row;">
             <button class="button button-secondary" id="buttonSettings">
                 <img src="assets/settings.svg" alt="Apri le impostazioni">
             </button>
@@ -30,7 +29,7 @@
                 <span>Aggiungi un obiettivo</span>
                 <span style="display: flex;"><img src="assets/plus.svg" alt=""></span>
             </button>
-            <input type="text" id="inputTaskNew" rows="1">
+            <input type="text" id="inputTaskNew" placeholder="Inserisci l'obiettivo">
         </div>
 
         <script src="index.js"></script>
