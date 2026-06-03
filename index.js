@@ -29,7 +29,7 @@ inputTaskNew.addEventListener("keydown", function(e) {
     if (e.key === "Enter") {
         e.preventDefault()
         if (inputTaskNew.value.trim() !== "") {
-            taskList.push(inputTaskNew.value)
+            taskList.unshift(inputTaskNew.value)
             localStorage.setItem("taskList", JSON.stringify(taskList))
             renderTaskList()
             buttonTaskNew.style.display= "";
@@ -53,7 +53,7 @@ function deleteTask(index) {
 
 /* RENDERING TASK-LIST FUNCTION */
 function renderTaskList() {
-    let taskListView = taskList.reverse().map(function(value, index) {
+    let taskListView = taskList.map(function(value, index) {
         return `
             <div class="task">
                 <label id="labelCheckbox">
