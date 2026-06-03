@@ -8,6 +8,10 @@ let name = document.getElementById("name");
 // DISPLAYING NAME
 name.innerText = localStorage.getItem("name");
 
+if (!localStorage.getItem("hasVisited")) {
+  localStorage.setItem("hasVisited", "true");
+  window.location.replace("welcome.html");
+}
 /* READING BUTTONs AND INPUT*/
 let buttonTaskNew = document.getElementById("buttonTaskNew");
 let inputTaskNew = document.getElementById("inputTaskNew");
