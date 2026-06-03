@@ -1,3 +1,7 @@
+if (!localStorage.getItem("hasVisited")) {
+  localStorage.setItem("hasVisited", "true");
+  window.location.replace("welcome.html");
+}
 /* READING HIDDEN INPUT */
 let inputTaskNew = document.getElementById("inputTaskNew");
 
