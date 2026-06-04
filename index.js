@@ -1,12 +1,11 @@
-// CHECK IF FIRST LOGIN
+/* TOUCH FIX FOR APPLE DEVICES >:( */
+document.body.addEventListener("touchstart", function() {});
 
+// CHECK IF FIRST LOGIN
 if (!localStorage.getItem("hasVisited")) {;
   localStorage.setItem("hasVisited", "true");
   window.location.replace("welcome.html");
 }
-
-/* TOUCH FIX FOR APPLE DEVICES >:( */
-document.body.addEventListener("touchstart", function() {});
 
 // READING GREETING & NAME
 let greeting = document.getElementById("greeting");
