@@ -18,72 +18,180 @@ h1,h2,h3,h4,h5,h6{
     margin: 0;
 }
 
-
-/* PANELS */
-
-.panel {
-    position: sticky;
-    background-color: #190933;
+.task-text {
+    flex: 1;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: ease 150ms;
 }
 
-.panel-top {
+@media (hover:hover) and (pointer:fine) {
+    .task-text:hover {
+        padding: 8px;
+        background-color: #D3C1EB40 ;
+    }
+}
+
+.task-text:active {
+    padding: 8px;
+    background-color: #D3C1EB40 ;
+    transform: scale(0.95);
+}
+
+.task:has(.task-checkbox:checked) .task-text {
+    text-decoration: line-through;
+    opacity: 50%;
+}
+
+.text-info {
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* DIVs */
+
+.bar {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    background-color: #190933;
+    transition: ease 300ms;
+}
+
+.bar-top {
     top: 0;
     padding: 32px 32px 16px 32px;
     border-bottom: 1px solid #D3C1EB40;
 }
 
-.panel-bottom {
+.bar-bottom {
     bottom: 0;
     padding: 16px 32px 32px 32px;
     border-top: 1px solid #D3C1EB40;
-    display: flex;
     gap: 8px;
+}
+
+.illustration {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    padding: 0;
 }
 
 
 /* BUTTONs */
 
-button {
+.button {
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 99px;
+    border: 2px solid #8C63D2;
     padding: 16px;
     cursor: pointer;
+    transition: ease 75ms;
+    user-select: none;
     /* FONT */
+    font-family: inherit;
     font-size: inherit;
     font-weight: 600;
 }
 
-.button-cta {
-    width: 100%;
+.button-primary {
+    flex: 1;
     background-color: #BB97F8;
-    border: 2px solid #8C63D2;
+    color: black;
 }
 
 .button-secondary {
     width: fit-content;
     background-color: transparent;
+}
+
+.button-tertiary {
+    padding: 8px;
+    background: transparent;
+    border: none;
+    color: white;
+    font: inherit;
+}
+
+@media (hover:hover) and (pointer:fine) {
+    button:hover {
+        opacity: 50%;
+    }
+}
+
+button:active {
+    opacity: 50%;
+    transform: scale(0.95);
+}
+
+@media (hover:hover) and (pointer:fine) {
+    .button-tertiary:hover {
+        background-color: #D3C1EB40;
+        transform: scale(1.1);
+    }
+}
+
+@media (hover:hover) and (pointer:fine) {
+    .btn-3-big:hover {
+        transform: scale(1);
+        opacity: 50%;
+    }
+}
+
+.button-tertiary:active {
+    background-color: #D3C1EB40;
+    transform: scale(0.95);
+}
+
+/* INPUT */
+
+input {
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 99px;
+    padding: 8px;
+    background: transparent;
+    border: 2px dashed #8C63D2;
+    color: white;
+    /* FONT */
+    font: inherit;
+}
+
+input:focus {
+    outline: none;
     border: 2px solid #8C63D2;
+}
+
+#inputTaskNew {
+    display: none;
+    flex: 1;
+    padding: 16px;
+    height: 60px;
 }
 
 
 /* TASK */
 
 .task-list {
-    padding: 0 32px 0 32px;
-    flex: 1;   
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0 32px 32px 32px;
 }
 
 .task {
-    margin-top: 16px;
-    margin-bottom: 16px;
     display: flex;
+    padding-top: 16px;
+    padding-bottom: 16px;
     gap: 8px;
-}
-
-.task-text {
-    flex: 1;
+    align-items: center;
+    border-bottom: 1px solid #D3C1EB40;
 }
 
 
@@ -107,7 +215,17 @@ button {
     width: 32px;
     height: 32px;
     cursor: pointer;
-} 
+    transition: ease 150ms;
+}
+
+.label-checkbox:hover {
+    opacity: 50%;
+    transform: scale(1.2);
+}
+
+.label-checkbox:active {
+    transform: scale(0.9);
+}
 
 .task-checkbox {
     display: none;

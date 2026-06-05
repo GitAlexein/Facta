@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facta - Benvenutə!</title>
+    <link rel="stylesheet" href="style.css">
+    <!--Montserrat-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <!--DM Sans-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    </head>
+</head>
+<body>
+    <div class="bar bar-top">
+        <h1>Benvenutə in Facta!</h1>
+    </div>
+
+   <div class="illustration" style="background: linear-gradient(to top, #8C63D2 25%, #190933);">
+        <img src="assets/welcome illustration.svg" alt="" style="flex: 1; height: 100%;">
+   </div>
+
+    <div class="bar bar-bottom" style= "gap: 16px;">
+        <span><h2>Come ti chiami?</h2></span>
+        <input type="text" placeholder="Inserisci il tuo nome" id="inputNameNew">
+        <button class="button button-primary" style="width: 100%;" id="buttonNameNew">
+            <span>Conferma</span>
+            <span style="display: flex;"><img src="assets/arrow primary.svg" alt=""></span>
+        </button>
+        <button class="button button-tertiary btn-3-big" style="width: 100%; margin-top: -8px; padding: 16px; display: none;" id="buttonSkipName">
+            <span>Salta questo passaggio</span>
+            <span style="display: flex;"><img src="assets/cancel tertiary.svg" alt=""></span>
+        </button>
+        <span class="text-info" style="margin-top: -8px;">Il nome che hai scelto può essere cambiato in seguito nelle impostazioni.</span>
+    </div>
+
+    <script src="welcome.js"></script>
+</body>
+</html>
