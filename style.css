@@ -20,7 +20,7 @@ h1,h2,h3,h4,h5,h6{
 
 .task-text {
     flex: 1;
-    border-radius: 99px;
+    border-radius: 16px;
     cursor: pointer;
     transition: ease 150ms;
 }

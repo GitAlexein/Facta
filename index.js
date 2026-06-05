@@ -40,14 +40,25 @@ renderTaskList()
 let buttonTaskNew = document.getElementById("buttonTaskNew");
 let inputTaskNew = document.getElementById("inputTaskNew");
 let buttonSettings = document.getElementById("buttonSettings");
+let buttonTaskCancel = document.getElementById("buttonTaskCancel")
 
 
 // Click and focus function
 buttonTaskNew.addEventListener("click", function() {;
-    buttonTaskNew.style.display= "none";
-    buttonSettings.style.display= "none";
-    inputTaskNew.style.display= "block";
+    buttonTaskNew.style.display = "none";
+    buttonSettings.style.display = "none";
+    buttonTaskCancel.style.display = "flex";
+    inputTaskNew.style.display = "block";
     inputTaskNew.focus();
+});
+
+// Cancels the creation of a new task
+buttonTaskCancel.addEventListener("click", function(){
+    buttonTaskCancel.style.display = "none";
+    inputTaskNew.style.display = "";
+    inputTaskNew.value = "";
+    buttonTaskNew.style.display = "";
+    buttonSettings.style.display = "";
 });
 
 // Saves input in localStorage
@@ -58,10 +69,12 @@ inputTaskNew.addEventListener("keydown", function(e) {
             renderTaskList();
             buttonTaskNew.style.display= "";
             buttonSettings.style.display= "";
+            buttonTaskCancel.style.display = "none";
             inputTaskNew.style.display= "";
             inputTaskNew.value = ""
         } else {
             alert("Il testo è vuoto! Prova a scrivere qualcosa.");
+            buttonTaskCancel.style.display = "none";
         };
     };
 });
@@ -89,7 +102,7 @@ function updateTask(id) {
                 text.style.display = "block";
                 renderTaskList();
             } else {
-                alert("Il testo è vuoto! Se vuoi eliminare questa task clicca sul cestino.");
+                alert("Non si possono salvare task vuote! Se vuoi eliminare questa task clicca sul cestino.");
             };
             
             
@@ -99,7 +112,7 @@ function updateTask(id) {
 
 // Removes task
 function deleteTask(id) {
-    if (confirm("Sei sicuro di voler eliminare questa task?") === true) {
+    if (confirm("Sei sicuro di voler eliminare questa task? Puoi sempre eliminare l'intera lista dalle impostazioni.") === true) {
         taskStore.remove(id);
         renderTaskList();
     };
@@ -119,7 +132,7 @@ function renderTaskList() {
                 <span class="task-text" style="overflow-wrap: break-word;" id="text-${task.id}" onclick="updateTask(${task.id})">${task.text}</span>
                 <input type="text" style="display: none;" id="input-${task.id}">
                 <button class="button button-tertiary" onclick="deleteTask(${task.id})">
-                    <img src="assets/trash.svg" alt="Elimina questo obiettivo" style="height: 24px; cursor: pointer;">    
+                    <img src="assets/trash tertiary.svg" alt="Elimina questo obiettivo" style="height: 24px; cursor: pointer;">    
                 </button>
             </div>
                 `;

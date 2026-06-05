@@ -16,20 +16,23 @@
     <body>
         <div class="bar bar-top">
             <h1><span id="greeting">Se vedi questo testo, qualcosa è andato storto :3</span> <span id="name">utente</span>,</h1>
-            <span id="encouragement">Comincia a completare i tuoi obiettivi!</span>
+            <span id="encouragement">Comincia a completare le tue task!</span>
         </div>
 
             <div class="task-list" id="taskView"></div>
 
         <div class="bar bar-bottom" style="flex-direction: row;">
             <button class="button button-secondary" id="buttonSettings">
-                <img src="assets/settings.svg" alt="Apri le impostazioni">
+                <img src="assets/settings secondary.svg" alt="Apri le impostazioni">
             </button>
             <button class="button button-primary" id="buttonTaskNew">
-                <span>Aggiungi un obiettivo</span>
-                <span style="display: flex;"><img src="assets/plus.svg" alt=""></span>
+                <span>Aggiungi una task</span>
+                <span style="display: flex;"><img src="assets/plus primary.svg" alt=""></span>
             </button>
-            <input type="text" id="inputTaskNew" placeholder="Inserisci l'obiettivo">
+            <button class="button button-secondary" style="display: none;" id="buttonTaskCancel">
+                <img src="assets/cancel secondary.svg" alt="Annulla inserimento task">
+            </button>
+            <input type="text" id="inputTaskNew" placeholder="Inserisci la task">
         </div>
 
         <script src="taskStore.js"></script>
