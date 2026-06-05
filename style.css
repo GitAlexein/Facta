@@ -20,6 +20,27 @@ h1,h2,h3,h4,h5,h6{
 
 .task-text {
     flex: 1;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: ease 150ms;
+}
+
+@media (hover:hover) and (pointer:fine) {
+    .task-text:hover {
+        padding: 8px;
+        background-color: #D3C1EB40 ;
+    }
+}
+
+.task-text:active {
+    padding: 8px;
+    background-color: #D3C1EB40 ;
+    transform: scale(0.95);
+}
+
+.task:has(.task-checkbox:checked) .task-text {
+    text-decoration: line-through;
+    opacity: 50%;
 }
 
 .text-info {
@@ -112,7 +133,14 @@ button:active {
 @media (hover:hover) and (pointer:fine) {
     .button-tertiary:hover {
         background-color: #D3C1EB40;
-        transform: scale(1.2);
+        transform: scale(1.1);
+    }
+}
+
+@media (hover:hover) and (pointer:fine) {
+    .btn-3-big:hover {
+        transform: scale(1);
+        opacity: 50%;
     }
 }
 
@@ -181,7 +209,7 @@ input:focus {
 
 /* CHECKBOX */
 
-#labelCheckbox {
+.label-checkbox {
     display: flex;
     align-items: center;
     width: 32px;
@@ -190,12 +218,12 @@ input:focus {
     transition: ease 150ms;
 }
 
-#labelCheckbox:hover {
+.label-checkbox:hover {
     opacity: 50%;
     transform: scale(1.2);
 }
 
-#labelCheckbox:active {
+.label-checkbox:active {
     transform: scale(0.9);
 }
 

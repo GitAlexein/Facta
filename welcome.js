@@ -1,9 +1,9 @@
-// READING INPUT, BUTTON AND HIDDEN SKIP BUTTON
+// Reads buttons and inputs
 let inputNameNew = document.getElementById("inputNameNew");
 let buttonNameNew = document.getElementById("buttonNameNew");
 let buttonSkipName = document.getElementById("buttonSkipName")
 
-// INPUT & BUTTON EVENT LISTENERS
+// Input & button event listeners
 buttonNameNew.addEventListener("click", function(){
     saveName();
 });
@@ -14,7 +14,7 @@ inputNameNew.addEventListener("keydown", function(e){
     }
 });
 
-// SAVING NAME FUNCTION
+// Saves name
 function saveName() {
     if (inputNameNew.value.trim() !== "") {
         localStorage.setItem("name", inputNameNew.value)
@@ -25,7 +25,7 @@ function saveName() {
     }
 }
 
-// SKIP BUTTON FUNCTION
+// Skip button function
 buttonSkipName.addEventListener("click", function(){
     window.location.href = "index.html"
 });

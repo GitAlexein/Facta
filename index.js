@@ -1,20 +1,25 @@
-/* TOUCH FIX FOR APPLE DEVICES >:( */
+// CSS effects fix for Apple devices >:(
 document.body.addEventListener("touchstart", function() {});
 
-// CHECK IF FIRST LOGIN
+// CHECKS IF FIRST LOGIN
 if (!localStorage.getItem("hasVisited")) {;
   localStorage.setItem("hasVisited", "true");
   window.location.replace("welcome.html");
 }
 
-// READING GREETING & NAME
+// Reads greeting and name
 let greeting = document.getElementById("greeting");
 let name = document.getElementById("name");
 
-// DISPLAYING NAME
-name.innerText = localStorage.getItem("name");
+// Displays name
+let nameSaved = localStorage.getItem("name");
+if (nameSaved=== null) {
+    name.innerText = "utente";
+} else {
+    name.innerText = nameSaved.trim();
+};
 
-// DISPLAYING GREETING
+// Displays greeting
 let date = new Date();
 let hour = date.getHours();
 
@@ -28,24 +33,16 @@ if (hour < 6) {
     greeting.innerText = "Buonasera";
 }
 
+// Displays tasks
+renderTaskList()
 
-/* READING BUTTONs AND INPUT*/
+// Reads buttons and input
 let buttonTaskNew = document.getElementById("buttonTaskNew");
 let inputTaskNew = document.getElementById("inputTaskNew");
 let buttonSettings = document.getElementById("buttonSettings");
 
 
-/* TASK LIST */
-let taskList = [];
-
-/* READING LOCAL STORAGE */
-if (localStorage.getItem("taskList") !== null) {;
-    taskList = JSON.parse(localStorage.getItem("taskList"));
-    renderTaskList();
-};
-
-
-/* CLICKING AND FOCUSING FUNCTION */
+// Click and focus function
 buttonTaskNew.addEventListener("click", function() {;
     buttonTaskNew.style.display= "none";
     buttonSettings.style.display= "none";
@@ -53,49 +50,79 @@ buttonTaskNew.addEventListener("click", function() {;
     inputTaskNew.focus();
 });
 
-/* SAVING INPUT IN LOCAL STORAGE FUNCTION*/
-inputTaskNew.addEventListener("keydown", function(e) {;
-    if (e.key === "Enter") {;
-        e.preventDefault();
-        if (inputTaskNew.value.trim() !== "") {;
-            taskList.unshift(inputTaskNew.value);
-            localStorage.setItem("taskList", JSON.stringify(taskList));
+// Saves input in localStorage
+inputTaskNew.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        if (inputTaskNew.value.trim() !== "") {
+            taskStore.add(inputTaskNew.value);
             renderTaskList();
             buttonTaskNew.style.display= "";
             buttonSettings.style.display= "";
             inputTaskNew.style.display= "";
             inputTaskNew.value = ""
-        } else {;
+        } else {
             alert("Il testo è vuoto! Prova a scrivere qualcosa.");
         };
     };
 });
 
-
-
-/* TASK DELETION FUNCTION */
-function deleteTask(index) {;
-    taskList.splice(index, 1);
-    localStorage.setItem("taskList", JSON.stringify(taskList));
+// Checkbox toggle function
+function toggleTask(id) {
+    taskStore.toggle(id);
     renderTaskList();
 };
 
-/* RENDERING TASK-LIST FUNCTION */
-function renderTaskList() {;
-    let taskListView = taskList.map(function(value, index) {;
+// Updates task
+function updateTask(id) {
+    let input = document.getElementById(`input-${id}`);
+    let text = document.getElementById(`text-${id}`);
+    text.style.display = "none";
+    input.value = text.innerText;
+    input.style.display = "block";
+    input.focus();
+
+    input.addEventListener("keydown", function(e){
+        if (e.key === "Enter") {
+            if (input.value.trim() !== "") {
+                taskStore.update(id, input.value.trim());
+                input.style.display = "";
+                text.style.display = "block";
+                renderTaskList();
+            } else {
+                alert("Il testo è vuoto! Se vuoi eliminare questa task clicca sul cestino.");
+            };
+            
+            
+        };
+    });
+};
+
+// Removes task
+function deleteTask(id) {
+    if (confirm("Sei sicuro di voler eliminare questa task?") === true) {
+        taskStore.remove(id);
+        renderTaskList();
+    };
+};
+
+// Renders task list
+function renderTaskList() {
+    let tasks = taskStore.getAll();
+    let taskListView = tasks.map(function(task) {
         return `
             <div class="task">
-                <label id="labelCheckbox">
-                    <input type="checkbox" class="task-checkbox">
+                <label class="label-checkbox">
+                    <input type="checkbox" class="task-checkbox" ${task.done === true ? "checked" : ""} onchange="toggleTask(${task.id})">
                     <img src="assets/checkbox todo.svg" alt="" class="checkbox-icon todo">
                     <img src="assets/checkbox done.svg" alt="" class="checkbox-icon done">
                 </label>
-                <span class="task-text">${value}</span>
-                <button class="button button-tertiary" onclick="deleteTask(${index})">
+                <span class="task-text" style="overflow-wrap: break-word;" id="text-${task.id}" onclick="updateTask(${task.id})">${task.text}</span>
+                <input type="text" style="display: none;" id="input-${task.id}">
+                <button class="button button-tertiary" onclick="deleteTask(${task.id})">
                     <img src="assets/trash.svg" alt="Elimina questo obiettivo" style="height: 24px; cursor: pointer;">    
                 </button>
-</div>
-        `;
+            </div>
+                `;
     });
 
     let taskView = document.getElementById("taskView");
