@@ -1,4 +1,4 @@
-# Git Guidelines — Praxisum Facta
+# Git Guidelines — Facta
 
 A practical guide. The goal is to avoid conflicts, keep the history clean, and never break `alpha-development`.
 
@@ -133,7 +133,7 @@ In VSCode:
 
 ### "I have a conflict"
 
-VSCode highlights conflicting files. Open them — you will see both versions marked. Choose what to keep, save, stage the file, and commit. If you are unsure, call the committer person before resolving.
+VSCode highlights conflicting files. Open them, then click on **Open in merge editor** in the bottom right corner and you will see both versions marked. Choose what to keep, save, stage the file, and commit. If you are unsure, call the committer person before resolving.
 
 ### "I committed to alpha-development by mistake"
 
