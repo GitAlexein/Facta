@@ -18,6 +18,16 @@ h1,h2,h3,h4,h5,h6{
     margin: 0;
 }
 
+p {
+    margin: 0;
+}
+
+a {
+    display: flex;
+    text-decoration: none;
+    color: white;
+}
+
 .task-text {
     flex: 1;
     border-radius: 16px;
@@ -49,7 +59,37 @@ h1,h2,h3,h4,h5,h6{
     color: rgba(255, 255, 255, 0.5);
 }
 
+a {
+    transition: ease 150ms;
+}
+
+a img {
+    transition: ease 150ms;
+}
+
+@media (hover:hover) and (pointer:fine) {
+    a:hover {
+        font-weight: 700;
+    }
+
+    a img:hover {
+        transform: scale(1.2);
+    }
+}
+
+a:active {
+    transform: scale(0.7);
+    opacity: 50%;
+}
+
 /* DIVs */
+
+.main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 16px 32px 32px 32px;
+}
 
 .bar {
     position: sticky;
@@ -62,13 +102,13 @@ h1,h2,h3,h4,h5,h6{
 
 .bar-top {
     top: 0;
-    padding: 32px 32px 16px 32px;
+    padding: 16px 32px 16px 32px;
     border-bottom: 1px solid #D3C1EB40;
 }
 
 .bar-bottom {
     bottom: 0;
-    padding: 16px 32px 32px 32px;
+    padding: 16px 32px 16px 32px;
     border-top: 1px solid #D3C1EB40;
     gap: 8px;
 }
@@ -78,6 +118,11 @@ h1,h2,h3,h4,h5,h6{
     flex: 1;
     min-height: 0;
     padding: 0;
+}
+
+hr {
+    width: 100%;
+    color: #D3C1EB40;
 }
 
 
@@ -116,7 +161,6 @@ h1,h2,h3,h4,h5,h6{
     background: transparent;
     border: none;
     color: white;
-    font: inherit;
 }
 
 @media (hover:hover) and (pointer:fine) {
@@ -137,10 +181,24 @@ button:active {
     }
 }
 
+.button-tertiary-alt {
+    width: 100%;
+    padding: 16px;
+    background: transparent;
+    border: none;
+    color: white;
+}
+
 @media (hover:hover) and (pointer:fine) {
-    .btn-3-big:hover {
+    .button-tertiary-alt:hover {
+        background-color: #D3C1EB40;
         transform: scale(1);
         opacity: 50%;
+    }
+
+    .button-tertiary-alt:active {
+        background-color: #D3C1EB40;
+        transform: scale(0.95);
     }
 }
 
@@ -148,6 +206,7 @@ button:active {
     background-color: #D3C1EB40;
     transform: scale(0.95);
 }
+
 
 /* INPUT */
 
@@ -177,13 +236,6 @@ input:focus {
 
 
 /* TASK */
-
-.task-list {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 0 32px 32px 32px;
-}
 
 .task {
     display: flex;
@@ -218,9 +270,11 @@ input:focus {
     transition: ease 150ms;
 }
 
-.label-checkbox:hover {
-    opacity: 50%;
-    transform: scale(1.2);
+@media (hover:hover) and (pointer:fine) {
+    .label-checkbox:hover {
+        opacity: 50%;
+        transform: scale(1.2);
+    }
 }
 
 .label-checkbox:active {
