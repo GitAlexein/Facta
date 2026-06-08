@@ -195,11 +195,11 @@ button:active {
         transform: scale(1);
         opacity: 50%;
     }
+}
 
-    .button-tertiary-alt:active {
-        background-color: #D3C1EB40;
-        transform: scale(0.95);
-    }
+.button-tertiary-alt:active {
+    background-color: #D3C1EB40;
+    transform: scale(0.95);
 }
 
 .button-tertiary:active {
