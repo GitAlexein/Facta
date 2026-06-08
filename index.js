@@ -25,11 +25,11 @@ let hour = date.getHours();
 
 if (hour < 6) {
     greeting.innerText = "Ciao";
-} else if (hour >= 6 && hour < 12) {
+} else if (hour < 12) {
     greeting.innerText = "Buongiorno";
-} else if (hour >= 12 && hour < 18) {
+} else if (hour < 18) {
     greeting.innerText = "Buon pomeriggio";
-} else if (hour > 18) {
+} else {
     greeting.innerText = "Buonasera";
 }
 
