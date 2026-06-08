@@ -15,6 +15,7 @@ buttonNameChange.addEventListener("click", function(){
     let newName = prompt("Inserisci il nuovo nome da utilizzare.")
     if (newName.trim() !== "") {
         localStorage.setItem("name", newName.trim())
+        window.location.href = "index.html";
     }
 });
 
