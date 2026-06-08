@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facta - Benvenutə!</title>
     <link rel="stylesheet" href="style.css">
@@ -25,12 +26,13 @@
 
     <div class="bar bar-bottom" style= "gap: 16px;">
         <span><h2>Come ti chiami?</h2></span>
+        <span style="margin-top: -16px;">Questa informazione serve solo a salutarti ogni volta che userai Facta.</span>
         <input type="text" placeholder="Inserisci il tuo nome" id="inputNameNew">
         <button class="button button-primary" style="width: 100%;" id="buttonNameNew">
             <span>Conferma</span>
             <span style="display: flex;"><img src="assets/arrow primary.svg" alt=""></span>
         </button>
-        <button class="button button-tertiary btn-3-big" style="width: 100%; margin-top: -8px; padding: 16px; display: none;" id="buttonSkipName">
+        <button class="button button-tertiary-alt" style="margin-top: -8px; display: none;" id="buttonSkipName">
             <span>Salta questo passaggio</span>
             <span style="display: flex;"><img src="assets/cancel tertiary.svg" alt=""></span>
         </button>

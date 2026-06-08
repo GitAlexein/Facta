@@ -1,7 +1,7 @@
 // CSS effects fix for Apple devices >:(
 document.body.addEventListener("touchstart", function() {});
 
-// CHECKS IF FIRST LOGIN
+// Checks if user is already logged
 if (!localStorage.getItem("hasVisited")) {;
   localStorage.setItem("hasVisited", "true");
   window.location.replace("welcome.html");
@@ -25,11 +25,11 @@ let hour = date.getHours();
 
 if (hour < 6) {
     greeting.innerText = "Ciao";
-} else if (hour >= 6 && hour < 12) {
+} else if (hour < 12) {
     greeting.innerText = "Buongiorno";
-} else if (hour >= 12 && hour < 18) {
+} else if (hour < 18) {
     greeting.innerText = "Buon pomeriggio";
-} else if (hour > 18) {
+} else {
     greeting.innerText = "Buonasera";
 }
 
@@ -43,7 +43,12 @@ let buttonSettings = document.getElementById("buttonSettings");
 let buttonTaskCancel = document.getElementById("buttonTaskCancel")
 
 
-// Click and focus function
+// Settings button click
+buttonSettings.addEventListener("click", function(){
+    window.location.href = "settings.html";
+});
+
+// Task button click and focus
 buttonTaskNew.addEventListener("click", function() {;
     buttonTaskNew.style.display = "none";
     buttonSettings.style.display = "none";
