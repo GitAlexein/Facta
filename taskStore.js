@@ -54,6 +54,11 @@ const taskStore = (() => {
       return true;
     },
 
+    // Replaces the entire task list with a new one (used for import)
+    replaceAll(newTasks) {
+        save(newTasks);
+    },
+
     // Deletes all tasks
     clear() {
       save([]);
