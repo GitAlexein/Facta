@@ -1,116 +1,117 @@
+/* -------------------------------- SECTIONS -------------------------------- */
+/*     Tokens · Hover · Base · Layout · Task · Checkbox · Buttons · Input     */
+/* -------------------------------------------------------------------------- */
+
+* {
+    margin: 0;
+}
+
+/* --------------------------------- TOKENS --------------------------------- */
+
+:root {
+    --bg:           #190933;
+    --primary:      #8C63D2;
+    --secondary:    #BB97F8;
+    --surface:      #D3C1EB40;   /* translucent purple for borders/highlights */
+    --text:         #ffffff;
+}
+
+
+
+/* -------------------------- HOVER ------------------------- */
+
+@media (hover: hover) and (pointer: fine) {
+
+    button:hover {
+        opacity: 50%;
+    }
+
+    /* Scale up slightly instead of just dimming */
+    .button-tertiary-text:hover, .button-tertiary-icon:hover {
+        background-color: var(--surface);
+        transform: scale(1.1);
+    }
+
+    .task-text:hover {
+        padding: 8px;
+        background-color: var(--surface);
+    }
+
+    .label-checkbox:hover {
+        opacity: 50%;
+        transform: scale(1.2);
+    }
+
+    a:hover {
+        transform: scale(1.2);
+    }
+}
+
+
+
+/* ---------------------------------- BASE ---------------------------------- */
+
 body {
     height: 100dvh;
     margin: 0;
     display: flex;
     flex-direction: column;
-    background-color: #190933;
-    /*FONTs*/
-    font-family: DM Sans;
+    background-color: var(--bg);
+    font-family: "DM Sans", sans-serif;
     font-size: 16px;
-    color: white;
+    color: var(--text);
 }
 
-
-/* TEXT */
-
-h1,h2,h3,h4,h5,h6{
-    font-family: Montserrat;
-    margin: 0;
-}
-
-p {
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Montserrat", sans-serif;
     margin: 0;
 }
 
 a {
     display: flex;
     text-decoration: none;
-    color: white;
-}
-
-.task-text {
-    flex: 1;
-    border-radius: 16px;
-    cursor: pointer;
     transition: ease 150ms;
-}
-
-@media (hover:hover) and (pointer:fine) {
-    .task-text:hover {
-        padding: 8px;
-        background-color: #D3C1EB40 ;
-    }
-}
-
-.task-text:active {
-    padding: 8px;
-    background-color: #D3C1EB40 ;
-    transform: scale(0.95);
-}
-
-.task:has(.task-checkbox:checked) .task-text {
-    text-decoration: line-through;
-    opacity: 50%;
 }
 
 .text-info {
     font-size: 12px;
-    font-style: italic;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-a {
-    transition: ease 150ms;
-}
-
-a img {
-    transition: ease 150ms;
-}
-
-@media (hover:hover) and (pointer:fine) {
-    a:hover {
-        font-weight: 700;
-    }
-
-    a img:hover {
-        transform: scale(1.2);
-    }
-}
-
-a:active {
-    transform: scale(0.7);
     opacity: 50%;
 }
 
-/* DIVs */
 
-.main {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 16px 32px 32px 32px;
-}
 
+/* --------------------------------- LAYOUT --------------------------------- */
+
+/* Sticky header and footer bars shared by .bar-top and .bar-bottom */
 .bar {
     position: sticky;
     display: flex;
     flex-direction: column;
     align-items: start;
-    background-color: #190933;
+    background-color: var(--bg);
     transition: ease 300ms;
 }
 
 .bar-top {
     top: 0;
     padding: 16px 32px 16px 32px;
-    border-bottom: 1px solid #D3C1EB40;
+    border-bottom: 1px solid var(--surface);
 }
 
+/* flex-direction is set to row via inline style in the HTML */
 .bar-bottom {
     bottom: 0;
     padding: 16px 32px 16px 32px;
-    border-top: 1px solid #D3C1EB40;
+    border-top: 1px solid var(--surface);
     gap: 8px;
+}
+
+/* Scrollable area between the two bars */
+.main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 16px 32px 32px 32px;
 }
 
 .illustration {
@@ -122,145 +123,47 @@ a:active {
 
 hr {
     width: 100%;
-    color: #D3C1EB40;
+    color: var(--surface);
 }
 
 
-/* BUTTONs */
 
-.button {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 99px;
-    border: 2px solid #8C63D2;
-    padding: 16px;
-    cursor: pointer;
-    transition: ease 75ms;
-    user-select: none;
-    /* FONT */
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: 600;
-}
+/* ---------------------------------- TASK ---------------------------------- */
 
-.button-primary {
-    flex: 1;
-    background-color: #BB97F8;
-    color: black;
-}
-
-.button-secondary {
-    width: fit-content;
-    background-color: transparent;
-}
-
-.button-tertiary {
-    padding: 8px;
-    background: transparent;
-    border: none;
-    color: white;
-}
-
-@media (hover:hover) and (pointer:fine) {
-    button:hover {
-        opacity: 50%;
-    }
-}
-
-button:active {
-    opacity: 50%;
-    transform: scale(0.95);
-}
-
-@media (hover:hover) and (pointer:fine) {
-    .button-tertiary:hover {
-        background-color: #D3C1EB40;
-        transform: scale(1.1);
-    }
-}
-
-.button-tertiary-alt {
-    width: 100%;
-    padding: 16px;
-    background: transparent;
-    border: none;
-    color: white;
-}
-
-@media (hover:hover) and (pointer:fine) {
-    .button-tertiary-alt:hover {
-        background-color: #D3C1EB40;
-        transform: scale(1);
-        opacity: 50%;
-    }
-}
-
-.button-tertiary-alt:active {
-    background-color: #D3C1EB40;
-    transform: scale(0.95);
-}
-
-.button-tertiary:active {
-    background-color: #D3C1EB40;
-    transform: scale(0.95);
-}
-
-
-/* INPUT */
-
-input {
-    box-sizing: border-box;
-    width: 100%;
-    border-radius: 99px;
-    padding: 8px;
-    background: transparent;
-    border: 2px dashed #8C63D2;
-    color: white;
-    /* FONT */
-    font: inherit;
-}
-
-input:focus {
-    outline: none;
-    border: 2px solid #8C63D2;
-}
-
-#inputTaskNew {
-    display: none;
-    flex: 1;
-    padding: 16px;
-    height: 60px;
-}
-
-
-/* TASK */
-
+/* Single task row */
 .task {
     display: flex;
     padding-top: 16px;
     padding-bottom: 16px;
     gap: 8px;
     align-items: center;
-    border-bottom: 1px solid #D3C1EB40;
+    border-bottom: 1px solid var(--surface);
 }
 
-
-/* TASK STATE */
-
-.task-new {
-    padding: 16px;
+/* Tappable text — highlights on press, struck through when done */
+.task-text {
+    flex: 1;
     border-radius: 16px;
+    cursor: pointer;
+    transition: ease 150ms;
 }
 
-.task-done {
-    color: #ffffff80;
+.task-text:active {
+    padding: 8px;
+    background-color: var(--surface);
+    transform: scale(0.95);
+}
+
+.task:has(.task-checkbox:checked) .task-text {
+    text-decoration: line-through;
+    opacity: 50%;
 }
 
 
-/* CHECKBOX */
 
+/* -------------------------------- CHECKBOX -------------------------------- */
+
+/* <label> wrapper that sizes the icon and handles press animation */
 .label-checkbox {
     display: flex;
     align-items: center;
@@ -270,29 +173,105 @@ input:focus {
     transition: ease 150ms;
 }
 
-@media (hover:hover) and (pointer:fine) {
-    .label-checkbox:hover {
-        opacity: 50%;
-        transform: scale(1.2);
-    }
-}
-
 .label-checkbox:active {
     transform: scale(0.9);
 }
 
+/* Native checkbox is hidden — state drives the SVG icons below */
 .task-checkbox {
     display: none;
 }
 
-.checkbox-icon.done {
-    display: none;
+.checkbox-icon.done                          { display: none;  }
+.task-checkbox:checked ~ .checkbox-icon.todo { display: none;  }
+.task-checkbox:checked ~ .checkbox-icon.done { display: block; }
+
+
+
+/* --------------------------------- BUTTONS -------------------------------- */
+
+/* Base — shared by all three variants */
+.button {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 99px;
+    border: 2px solid var(--primary);
+    padding: 16px;
+    cursor: pointer;
+    transition: ease 75ms;
+    user-select: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 550;
 }
 
-.task-checkbox:checked ~ .checkbox-icon.todo {
-    display: none;
+/* Filled — primary action ("Add task") */
+.button-primary {
+    flex: 1;
+    background-color: var(--secondary);
+    color: black;
 }
 
-.task-checkbox:checked ~ .checkbox-icon.done {
-    display: block;
+/* Ghost — border only, transparent fill (settings, cancel) */
+.button-secondary {
+    width: fit-content;
+    background-color: transparent;
+}
+
+/* No border, no background (skip/options) */
+.button-tertiary-text {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    width: 100%;
+}
+
+/* Icon-only */
+.button-tertiary-icon {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    padding: 8px;
+    color: var(--text);
+    font: inherit;
+}
+
+button:active {
+    opacity: 50%;
+    transform: scale(0.95);
+}
+
+.button-tertiary-text:active, .button-tertiary-icon:active {
+    background-color: var(--surface);
+    transform: scale(0.95);
+}
+
+
+
+/* ---------------------------------- INPUT --------------------------------- */
+
+input {
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 99px;
+    padding: 8px;
+    background: transparent;
+    border: 2px dashed var(--primary);
+    color: var(--text);
+    font: inherit;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid var(--primary);
+}
+
+/* New-task input — hidden until the add button is tapped */
+#inputTaskNew {
+    display: none;
+    flex: 1;
+    padding: 16px;
+    height: 60px;
 }
