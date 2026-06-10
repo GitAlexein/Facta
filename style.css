@@ -1,22 +1,55 @@
-/* =============================================================
-   Sections: Tokens · Base · Layout · Task · Checkbox · Buttons · Input
-   ============================================================= */
+/* -------------------------------- SECTIONS -------------------------------- */
+/*     Tokens · Hover · Base · Layout · Task · Checkbox · Buttons · Input     */
+/* -------------------------------------------------------------------------- */
 
+* {
+    margin: 0;
+}
 
-
-/* ----- TOKENS --------------------------------------------- */
+/* --------------------------------- TOKENS --------------------------------- */
 
 :root {
     --bg:           #190933;
-    --accent:       #8C63D2;
-    --accent-light: #BB97F8;
+    --primary:      #8C63D2;
+    --secondary:    #BB97F8;
     --surface:      #D3C1EB40;   /* translucent purple for borders/highlights */
     --text:         #ffffff;
-    --text-muted:   rgba(255, 255, 255, 0.5);
 }
 
 
-/* ----- BASE ----------------------------------------------- */
+
+/* -------------------------- HOVER ------------------------- */
+
+@media (hover: hover) and (pointer: fine) {
+
+    button:hover {
+        opacity: 50%;
+    }
+
+    /* Scale up slightly instead of just dimming */
+    .button-tertiary-text:hover, .button-tertiary-icon:hover {
+        background-color: var(--surface);
+        transform: scale(1.1);
+    }
+
+    .task-text:hover {
+        padding: 8px;
+        background-color: var(--surface);
+    }
+
+    .label-checkbox:hover {
+        opacity: 50%;
+        transform: scale(1.2);
+    }
+
+    a:hover {
+        transform: scale(1.2);
+    }
+}
+
+
+
+/* ---------------------------------- BASE ---------------------------------- */
 
 body {
     height: 100dvh;
@@ -34,8 +67,20 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
+a {
+    display: flex;
+    text-decoration: none;
+    transition: ease 150ms;
+}
 
-/* ----- LAYOUT --------------------------------------------- */
+.text-info {
+    font-size: 12px;
+    opacity: 50%;
+}
+
+
+
+/* --------------------------------- LAYOUT --------------------------------- */
 
 /* Sticky header and footer bars shared by .bar-top and .bar-bottom */
 .bar {
@@ -49,28 +94,41 @@ h1, h2, h3, h4, h5, h6 {
 
 .bar-top {
     top: 0;
-    padding: 32px 32px 16px 32px;
+    padding: 16px 32px 16px 32px;
     border-bottom: 1px solid var(--surface);
 }
 
 /* flex-direction is set to row via inline style in the HTML */
 .bar-bottom {
     bottom: 0;
-    padding: 16px 32px 32px 32px;
+    padding: 16px 32px 16px 32px;
     border-top: 1px solid var(--surface);
     gap: 8px;
 }
 
 /* Scrollable area between the two bars */
-.task-list {
+.main {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 0 32px 32px 32px;
+    padding: 16px 32px 32px 32px;
+}
+
+.illustration {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    padding: 0;
+}
+
+hr {
+    width: 100%;
+    color: var(--surface);
 }
 
 
-/* ----- TASK ----------------------------------------------- */
+
+/* ---------------------------------- TASK ---------------------------------- */
 
 /* Single task row */
 .task {
@@ -102,7 +160,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/* ----- CHECKBOX ------------------------------------------- */
+
+/* -------------------------------- CHECKBOX -------------------------------- */
 
 /* <label> wrapper that sizes the icon and handles press animation */
 .label-checkbox {
@@ -123,12 +182,13 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
 }
 
-.checkbox-icon.done                        { display: none;  }
+.checkbox-icon.done                          { display: none;  }
 .task-checkbox:checked ~ .checkbox-icon.todo { display: none;  }
 .task-checkbox:checked ~ .checkbox-icon.done { display: block; }
 
 
-/* ----- BUTTONS -------------------------------------------- */
+
+/* --------------------------------- BUTTONS -------------------------------- */
 
 /* Base — shared by all three variants */
 .button {
@@ -137,20 +197,20 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: space-between;
     align-items: center;
     border-radius: 99px;
-    border: 2px solid var(--accent);
+    border: 2px solid var(--primary);
     padding: 16px;
     cursor: pointer;
     transition: ease 75ms;
     user-select: none;
     font-family: inherit;
     font-size: inherit;
-    font-weight: 600;
+    font-weight: 550;
 }
 
 /* Filled — primary action ("Add task") */
 .button-primary {
     flex: 1;
-    background-color: var(--accent-light);
+    background-color: var(--secondary);
     color: black;
 }
 
@@ -160,11 +220,20 @@ h1, h2, h3, h4, h5, h6 {
     background-color: transparent;
 }
 
-/* Icon-only — no border, no background (delete/trash) */
-.button-tertiary {
-    padding: 8px;
+/* No border, no background (skip/options) */
+.button-tertiary-text {
     background: transparent;
     border: none;
+    color: var(--text);
+    width: 100%;
+}
+
+/* Icon-only */
+.button-tertiary-icon {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    padding: 8px;
     color: var(--text);
     font: inherit;
 }
@@ -174,15 +243,14 @@ button:active {
     transform: scale(0.95);
 }
 
-.button-tertiary:active {
+.button-tertiary-text:active, .button-tertiary-icon:active {
     background-color: var(--surface);
     transform: scale(0.95);
 }
 
-/* space to add button-option for settings page */
 
 
-/* ----- INPUT ---------------------------------------------- */
+/* ---------------------------------- INPUT --------------------------------- */
 
 input {
     box-sizing: border-box;
@@ -190,14 +258,14 @@ input {
     border-radius: 99px;
     padding: 8px;
     background: transparent;
-    border: 2px dashed var(--accent);
+    border: 2px dashed var(--primary);
     color: var(--text);
     font: inherit;
 }
 
 input:focus {
     outline: none;
-    border: 2px solid var(--accent);
+    border: 2px solid var(--primary);
 }
 
 /* New-task input — hidden until the add button is tapped */
@@ -206,33 +274,4 @@ input:focus {
     flex: 1;
     padding: 16px;
     height: 60px;
-}
-
-
-/* =============================================================
-   DESKTOP OVERRIDES
-   Scoped to real pointer devices (mouse/trackpad).
-   ============================================================= */
-
-@media (hover: hover) and (pointer: fine) {
-
-    button:hover {
-        opacity: 50%;
-    }
-
-    /* Scale up slightly instead of just dimming */
-    .button-tertiary:hover {
-        background-color: var(--surface);
-        transform: scale(1.1);
-    }
-
-    .task-text:hover {
-        padding: 8px;
-        background-color: var(--surface);
-    }
-
-    .label-checkbox:hover {
-        opacity: 50%;
-        transform: scale(1.2);
-    }
 }

@@ -136,7 +136,7 @@ function renderTaskList() {
                 </label>
                 <span class="task-text" style="overflow-wrap: break-word;" id="text-${task.id}" onclick="updateTask(${task.id})">${task.text}</span>
                 <input type="text" style="display: none;" id="input-${task.id}">
-                <button class="button button-tertiary" onclick="deleteTask(${task.id})">
+                <button class="button button-tertiary-icon" onclick="deleteTask(${task.id})">
                     <img src="assets/trash tertiary.svg" alt="Elimina questo obiettivo" style="height: 24px; cursor: pointer;">    
                 </button>
             </div>
