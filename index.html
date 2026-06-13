@@ -33,7 +33,10 @@
             <button class="button button-secondary" style="display: none;" id="buttonTaskCancel">
                 <img src="assets/cancel secondary.svg" alt="Annulla inserimento task">
             </button>
-            <input type="text" id="inputTaskNew" placeholder="Inserisci la task">
+            <div style="flex: 1; display: none; flex-direction: column;" id="inputTaskNewDiv">
+                <input type="text" id="inputTaskNew" placeholder="Inserisci la task">
+                <span class="text-info" style="color: var(--error-accent); margin-top: 4px; display: none;" id="errorTaskEmpty">La task è vuota! Prova a scrivere qualcosa.</span>
+            </div>
         </div>
 
         <script src="taskStore.js"></script>
