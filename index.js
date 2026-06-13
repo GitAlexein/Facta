@@ -49,48 +49,64 @@ buttonSettings.addEventListener("click", function(){
 });
 
 // Task button click and focus
+let inputTaskNewDiv = document.getElementById("inputTaskNewDiv")
+
 buttonTaskNew.addEventListener("click", function() {;
     buttonTaskNew.style.display = "none";
     buttonSettings.style.display = "none";
-    buttonTaskCancel.style.display = "flex";
-    inputTaskNew.style.display = "block";
+    buttonTaskCancel.style.display = "";
+    inputTaskNewDiv.style.display = "flex";
     inputTaskNew.focus();
 });
 
 // Cancels the creation of a new task
 buttonTaskCancel.addEventListener("click", function(){
     buttonTaskCancel.style.display = "none";
-    inputTaskNew.style.display = "";
+    inputTaskNewDiv.style.display = "none";
     inputTaskNew.value = "";
     buttonTaskNew.style.display = "";
     buttonSettings.style.display = "";
 });
 
+// FUNCTION - Saves task and changes appearances
+function finalizeTask() {
+    taskStore.add(inputTaskNew.value);
+    renderTaskList();
+    buttonTaskNew.style.display= "";
+    buttonSettings.style.display= "";
+    buttonTaskCancel.style.display = "none";
+    inputTaskNewDiv.style.display= "none";
+    inputTaskNew.value = "";
+    inputTaskNew.style.borderColor = "var(--accent)";
+    errorTaskEmpty.style.display = "none";
+}
+
+// Reads the hidden error message
+let errorTaskEmpty = document.getElementById("errorTaskEmpty");
+
 // Saves input in localStorage
 inputTaskNew.addEventListener("keydown", function(e) {
     if (e.key === "Enter") {
-        if (inputTaskNew.value.trim() !== "") {
-            taskStore.add(inputTaskNew.value);
-            renderTaskList();
-            buttonTaskNew.style.display= "";
-            buttonSettings.style.display= "";
-            buttonTaskCancel.style.display = "none";
-            inputTaskNew.style.display= "";
-            inputTaskNew.value = ""
+        if (inputTaskNew.value.trim() === "qualcosa" || inputTaskNew.value.trim() === "Qualcosa" || inputTaskNew.value.trim() === "qualcosa." || inputTaskNew.value.trim() === "Qualcosa.") {
+            finalizeTask();
+            alert("sei troppo divertente, ora siamo amici")
+        } else if (inputTaskNew.value.trim() !== "") {
+            finalizeTask();
         } else {
-            alert("Il testo è vuoto! Prova a scrivere qualcosa.");
+            inputTaskNew.style.borderColor = "var(--error-accent)";
+            errorTaskEmpty.style.display = "";        // Shows error message
             buttonTaskCancel.style.display = "none";
         };
     };
 });
 
-// Checkbox toggle function
+// FUNCTION - Checkbox toggle
 function toggleTask(id) {
     taskStore.toggle(id);
     renderTaskList();
 };
 
-// Updates task
+// FUNCTION - Updates task
 function updateTask(id) {
     let input = document.getElementById(`input-${id}`);
     let text = document.getElementById(`text-${id}`);
@@ -115,7 +131,7 @@ function updateTask(id) {
     });
 };
 
-// Removes task
+// FUNCTION - Removes task
 function deleteTask(id) {
     if (confirm("Sei sicuro di voler eliminare questa task? Puoi sempre eliminare l'intera lista dalle impostazioni.") === true) {
         taskStore.remove(id);
@@ -123,7 +139,7 @@ function deleteTask(id) {
     };
 };
 
-// Renders task list
+// FUNCTION - Renders task list
 function renderTaskList() {
     let tasks = taskStore.getAll();
     let taskListView = tasks.map(function(task) {
