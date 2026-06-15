@@ -48,6 +48,13 @@ buttonSettings.addEventListener("click", function(){
     window.location.href = "settings.html";
 });
 
+// Restores inputTaskNew to default
+function inputTaskNewDefault() {
+    inputTaskNew.value = "";
+    inputTaskNew.style.borderColor = "var(--accent)";
+    errorTaskEmpty.style.display = "none";
+}
+
 // Task button click and focus
 let inputTaskNewDiv = document.getElementById("inputTaskNewDiv")
 
@@ -63,7 +70,7 @@ buttonTaskNew.addEventListener("click", function() {;
 buttonTaskCancel.addEventListener("click", function(){
     buttonTaskCancel.style.display = "none";
     inputTaskNewDiv.style.display = "none";
-    inputTaskNew.value = "";
+    inputTaskNewDefault();
     buttonTaskNew.style.display = "";
     buttonSettings.style.display = "";
 });
@@ -76,9 +83,7 @@ function finalizeTask() {
     buttonSettings.style.display= "";
     buttonTaskCancel.style.display = "none";
     inputTaskNewDiv.style.display= "none";
-    inputTaskNew.value = "";
-    inputTaskNew.style.borderColor = "var(--accent)";
-    errorTaskEmpty.style.display = "none";
+    inputTaskNewDefault();
 }
 
 // Reads the hidden error message
@@ -95,7 +100,6 @@ inputTaskNew.addEventListener("keydown", function(e) {
         } else {
             inputTaskNew.style.borderColor = "var(--error-accent)";
             errorTaskEmpty.style.display = "";        // Shows error message
-            buttonTaskCancel.style.display = "none";
         };
     };
 });
