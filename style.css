@@ -84,6 +84,7 @@ a {
 /* Sticky header and footer bars shared by .bar-top and .bar-bottom */
 .bar {
     position: sticky;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: start;
