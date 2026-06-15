@@ -13,13 +13,13 @@
     --accent:       #8C63D2;
     --primary:      #BB97F8;
     --surface:      #D3C1EB40;   /* transparent purple for borders/highlights */
-    --error-accent: #CF2E30;
+    --danger-accent:#CF2E30;
     --text:         #ffffff;
 }
 
 
 
-/* -------------------------- HOVER ------------------------- */
+/* ---------------------------------- HOVER --------------------------------- */
 
 @media (hover: hover) and (pointer: fine) {
 
@@ -97,7 +97,7 @@ a {
     border-bottom: 1px solid var(--surface);
 }
 
-/* flex-direction is set to row via inline style in the HTML */
+
 .bar-bottom {
     bottom: 0;
     padding: 16px 32px 16px 32px;
@@ -111,6 +111,29 @@ a {
     flex-direction: column;
     flex: 1;
     padding: 16px 32px 32px 32px;
+}
+
+/* box to show a messages */
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+/* dashed red borders */
+.box-danger {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='%23CF2E30FF' stroke-width='3' stroke-dasharray='6%2c 12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    height: fit-content;
+}
+
+/* dashed borders */
+.box-empty {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='%238C63D2FF' stroke-width='3' stroke-dasharray='6%2c 12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    flex: 1;
+    align-items: center;
+    justify-content: center;
 }
 
 .illustration {

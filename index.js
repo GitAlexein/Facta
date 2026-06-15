@@ -2,10 +2,10 @@
 document.body.addEventListener("touchstart", function() {});
 
 // Checks if user is already logged
-if (!localStorage.getItem("hasVisited")) {;
+if (!localStorage.getItem("hasVisited")) {
   localStorage.setItem("hasVisited", "true");
   window.location.replace("welcome.html");
-}
+};
 
 // Reads greeting and name
 let greeting = document.getElementById("greeting");
@@ -33,6 +33,9 @@ if (hour < 6) {
     greeting.innerText = "Buonasera";
 }
 
+// Reads the empty list view (div)
+let emptyListView = document.getElementById("emptyListView");
+
 // Displays tasks
 renderTaskList()
 
@@ -40,7 +43,7 @@ renderTaskList()
 let buttonTaskNew = document.getElementById("buttonTaskNew");
 let inputTaskNew = document.getElementById("inputTaskNew");
 let buttonSettings = document.getElementById("buttonSettings");
-let buttonTaskCancel = document.getElementById("buttonTaskCancel")
+let buttonTaskCancel = document.getElementById("buttonTaskCancel");
 
 
 // Settings button click
@@ -89,11 +92,11 @@ inputTaskNew.addEventListener("keydown", function(e) {
     if (e.key === "Enter") {
         if (inputTaskNew.value.trim() === "qualcosa" || inputTaskNew.value.trim() === "Qualcosa" || inputTaskNew.value.trim() === "qualcosa." || inputTaskNew.value.trim() === "Qualcosa.") {
             finalizeTask();
-            alert("sei troppo divertente, ora siamo amici")
+            alert("sei troppo divertente, ora siamo amici");
         } else if (inputTaskNew.value.trim() !== "") {
             finalizeTask();
         } else {
-            inputTaskNew.style.borderColor = "var(--error-accent)";
+            inputTaskNew.style.borderColor = "var(--danger-accent)";
             errorTaskEmpty.style.display = "";        // Shows error message
             buttonTaskCancel.style.display = "none";
         };
@@ -107,28 +110,28 @@ function toggleTask(id) {
 };
 
 // FUNCTION - Updates task
-function updateTask(id) {
+function updateInputShow(id) {
     let input = document.getElementById(`input-${id}`);
     let text = document.getElementById(`text-${id}`);
     text.style.display = "none";
     input.value = text.innerText;
     input.style.display = "block";
     input.focus();
+};
 
-    input.addEventListener("keydown", function(e){
-        if (e.key === "Enter") {
-            if (input.value.trim() !== "") {
-                taskStore.update(id, input.value.trim());
-                input.style.display = "";
-                text.style.display = "block";
-                renderTaskList();
-            } else {
-                alert("Non si possono salvare task vuote! Se vuoi eliminare questa task clicca sul cestino.");
-            };
-            
-            
+function updateInputSave(id, e) {
+    let input = document.getElementById(`input-${id}`);
+    let text = document.getElementById(`text-${id}`)
+    if (e.key === "Enter") {
+        if (input.value.trim() !== "") {
+            taskStore.update(id, input.value.trim());
+            input.style.display = "";
+            text.style.display = "block";
+            renderTaskList();
+        } else {
+            alert("Non si possono salvare task vuote! Se vuoi eliminare questa task clicca sul cestino.");
         };
-    });
+    };
 };
 
 // FUNCTION - Removes task
@@ -141,7 +144,14 @@ function deleteTask(id) {
 
 // FUNCTION - Renders task list
 function renderTaskList() {
-    let tasks = taskStore.getAll();
+let tasks = taskStore.getAll()
+let taskView = document.getElementById("taskView");
+if (tasks.length === 0) {
+    taskView.style.display = "none";
+    emptyListView.style.display = "flex";
+} else {
+    taskView.style.display = "";
+    emptyListView.style.display = "none";
     let taskListView = tasks.map(function(task) {
         return `
             <div class="task">
@@ -150,15 +160,14 @@ function renderTaskList() {
                     <img src="assets/checkbox todo.svg" alt="" class="checkbox-icon todo">
                     <img src="assets/checkbox done.svg" alt="" class="checkbox-icon done">
                 </label>
-                <span class="task-text" style="overflow-wrap: break-word;" id="text-${task.id}" onclick="updateTask(${task.id})">${task.text}</span>
-                <input type="text" style="display: none;" id="input-${task.id}">
+                <span class="task-text" style="overflow-wrap: break-word;" id="text-${task.id}" onclick="updateInputShow(${task.id})">${task.text}</span>
+                <input type="text" style="display: none;" id="input-${task.id}" onkeydown="updateInputSave(${task.id}, event)">
                 <button class="button button-tertiary-icon" onclick="deleteTask(${task.id})">
                     <img src="assets/trash tertiary.svg" alt="Elimina questo obiettivo" style="height: 24px; cursor: pointer;">    
                 </button>
             </div>
                 `;
     });
-
-    let taskView = document.getElementById("taskView");
     taskView.innerHTML = taskListView.join(" ");
-};
+    };
+    }
