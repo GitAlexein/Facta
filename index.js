@@ -13,10 +13,9 @@ let name = document.getElementById("name");
 
 // Displays name
 let nameSaved = localStorage.getItem("name");
-if (nameSaved=== null) {
-    name.innerText = "utente";
-} else {
-    name.innerText = nameSaved.trim();
+if (nameSaved !== null && nameSaved !== "") {
+    let nameEdited = ` ${nameSaved.trim()}`;
+    name.innerText = nameEdited;
 };
 
 // Displays greeting
