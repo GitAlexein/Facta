@@ -21,6 +21,15 @@
         </div>
 
             <div class="main" id="taskView"></div>
+            <div class="main" style="display: none; gap: 16px;" id="emptyListView">
+                <div class="box box-danger">
+                    <p>Le task vengono salvate localmente e non sono sincronizzate con altri dispositivi, nessuno può accedervi.</p>
+                    <p" style="color: #E74245; margin-top: -8px;">Cancellando la cronologia è possibile che i dati vengano eliminati.</p>
+                </div>
+                <div class="box box-empty">
+                    <p style="color: var(--accent);">Aggiungi una task per visualizzarla qui</p>
+                </div>
+            </div>
 
         <div class="bar bar-bottom" style="flex-direction: row;">
             <button class="button button-secondary" id="buttonSettings">
@@ -35,7 +44,7 @@
             </button>
             <div style="flex: 1; display: none; flex-direction: column;" id="inputTaskNewDiv">
                 <input type="text" id="inputTaskNew" placeholder="Inserisci la task">
-                <span class="text-info" style="color: var(--error-accent); margin-top: 4px; display: none;" id="errorTaskEmpty">La task è vuota! Prova a scrivere qualcosa.</span>
+                <span class="text-info" style="color: var(--danger-accent); margin-top: 4px; display: none;" id="errorTaskEmpty">La task è vuota! Prova a scrivere qualcosa.</span>
             </div>
         </div>
 
