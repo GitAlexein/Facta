@@ -12,7 +12,8 @@
     --bg:           #190933;
     --accent:       #8C63D2;
     --primary:      #BB97F8;
-    --surface:      #D3C1EB40;   /* transparent purple for borders/highlights */
+    --surface:      #D3C1EB40;   /* transparent purple for dividers/highlights */
+    --danger:       #E74244;     /* red for actions or messages that require consideration (dangerous/important) */
     --danger-accent:#CF2E30;
     --text:         #ffffff;
 }
