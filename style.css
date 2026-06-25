@@ -12,6 +12,7 @@
     --bg:           #190933;
     --accent:       #8C63D2;
     --primary:      #BB97F8;
+    --secondary:    #41305F;
     --surface:      #D3C1EB40;   /* transparent purple for dividers/highlights */
     --danger:       #E74244;     /* red for actions or messages that require consideration (dangerous/important) */
     --danger-accent:#CF2E30;
@@ -26,6 +27,10 @@
 
     button:hover {
         opacity: 50%;
+    }
+
+    .button-secondary:active {
+        background-color: var(--secondary);
     }
 
     /* Scale up slightly instead of just dimming */
