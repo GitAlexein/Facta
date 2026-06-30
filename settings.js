@@ -27,3 +27,18 @@ buttonListClear.addEventListener("click", function(){
         window.location.href = "index.html";
     }
 });
+
+// Toggle for task deletion confirmation
+let toggleDeleteConfirm = document.getElementById("toggleDeleteConfirm");
+let tdcState = localStorage.getItem("confirmTaskDeletion");
+if (tdcState === "true") {
+   toggleDeleteConfirm.checked = true;
+}
+
+toggleDeleteConfirm.addEventListener("change", function(){
+    if (toggleDeleteConfirm.checked === true) {
+        localStorage.setItem("confirmTaskDeletion", "true");
+    } else {
+        localStorage.setItem("confirmTaskDeletion", "false");
+    }
+});

@@ -4,6 +4,7 @@ document.body.addEventListener("touchstart", function() {});
 // Checks if user is already logged
 if (!localStorage.getItem("hasVisited")) {
   localStorage.setItem("hasVisited", "true");
+  localStorage.setItem("confirmTaskDeletion", "true")
   window.location.replace("welcome.html");
 };
 

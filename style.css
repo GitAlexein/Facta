@@ -48,6 +48,14 @@
         transform: scale(1.2);
     }
 
+    .label-toggle:hover .input-slider::before {
+        transform: scale(1.2);
+    }
+
+    .label-toggle:hover input:checked ~ .input-slider::before {
+        transform: translateX(17px) scale(1.2);
+    }
+
     a:hover {
         transform: scale(1.2);
     }
@@ -144,6 +152,14 @@ a {
     justify-content: center;
 }
 
+.div-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    font-weight: 550;
+}
+
 .illustration {
     display: flex;
     flex: 1;
@@ -202,6 +218,9 @@ hr {
     cursor: pointer;
     transition: ease 150ms;
 }
+
+.label-toggle input:checked ~ .input-slider::before { transform: translateX(17px); background: var(--bg); }
+.label-toggle input:checked ~ .input-slider         { background: white;                                }
 
 .label-checkbox:active {
     transform: scale(0.9);
@@ -303,4 +322,26 @@ input:focus {
     flex: 1;
     padding: 16px;
     height: 60px;
+}
+
+.input-slider {
+    position: relative;
+    width: 38px;
+    height: 21px;
+    display: flex;
+    border: 2px solid white;
+    border-radius: 99px;
+    transition: ease 150ms;
+}
+
+.input-slider::before {
+    content: "";
+    position: absolute;
+    background: white;
+    border-radius: 99px;
+    top: 4px;
+    left: 4px;
+    width: 13px ;
+    height: 13px ;
+    transition: ease 150ms;
 }
