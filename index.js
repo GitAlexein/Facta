@@ -148,7 +148,7 @@ function deleteTask(id) {
     } else {
         taskStore.remove(id);
         renderTaskList();
-    }
+    };
 };
 
 // FUNCTION - Renders task list
