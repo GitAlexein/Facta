@@ -4,6 +4,7 @@ document.body.addEventListener("touchstart", function() {});
 // Checks if user is already logged
 if (!localStorage.getItem("hasVisited")) {
   localStorage.setItem("hasVisited", "true");
+  localStorage.setItem("confirmTaskDeletion", "true")
   window.location.replace("welcome.html");
 };
 
@@ -139,7 +140,12 @@ function updateInputSave(id, e) {
 
 // FUNCTION - Removes task
 function deleteTask(id) {
-    if (confirm("Sei sicuro di voler eliminare questa task? Puoi sempre eliminare l'intera lista dalle impostazioni.") === true) {
+    if (localStorage.getItem("confirmTaskDeletion") === "true") {
+        if (confirm("Sei sicuro di voler eliminare questa task? Puoi sempre eliminare l'intera lista dalle impostazioni.") === true) {
+            taskStore.remove(id);
+            renderTaskList();
+    };
+    } else {
         taskStore.remove(id);
         renderTaskList();
     };
@@ -173,4 +179,4 @@ if (tasks.length === 0) {
     });
     taskView.innerHTML = taskListView.join(" ");
     };
-    }
+    };

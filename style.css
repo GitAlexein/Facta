@@ -48,6 +48,14 @@
         transform: scale(1.2);
     }
 
+    .label-toggle:hover .input-slider::before {
+        transform: scale(1.2);
+    }
+
+    .label-toggle:hover input:checked ~ .input-slider::before {
+        transform: translateX(17px) scale(1.2);
+    }
+
     a:hover {
         transform: scale(1.2);
     }
@@ -120,7 +128,7 @@ a {
     padding: 16px 32px 32px 32px;
 }
 
-/* box to show a messages */
+/* box to show a message */
 .box {
     display: flex;
     flex-direction: column;
@@ -142,6 +150,14 @@ a {
     flex: 1;
     align-items: center;
     justify-content: center;
+}
+
+.div-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    font-weight: 550;
 }
 
 .illustration {
@@ -194,21 +210,22 @@ hr {
 /* -------------------------------- CHECKBOX -------------------------------- */
 
 /* <label> wrapper that sizes the icon and handles press animation */
-.label-checkbox {
+label {
     display: flex;
     align-items: center;
-    width: 32px;
-    height: 32px;
     cursor: pointer;
     transition: ease 150ms;
 }
+
+.label-toggle input:checked ~ .input-slider::before { transform: translateX(17px); background: var(--bg); }
+.label-toggle input:checked ~ .input-slider         { background: white;                                }
 
 .label-checkbox:active {
     transform: scale(0.9);
 }
 
 /* Native checkbox is hidden — state drives the SVG icons below */
-.task-checkbox {
+input[type="checkbox"] {
     display: none;
 }
 
@@ -237,20 +254,20 @@ hr {
     font-weight: 550;
 }
 
-/* Filled — primary action ("Add task") */
+/* filled + border */
 .button-primary {
     flex: 1;
     background-color: var(--primary);
     color: black;
 }
 
-/* Ghost — border only, transparent fill (settings, cancel) */
+/* border only, no background */
 .button-secondary {
     width: fit-content;
     background-color: transparent;
 }
 
-/* No border, no background (skip/options) */
+/* no border, no background */
 .button-tertiary-text {
     background: transparent;
     border: none;
@@ -258,13 +275,12 @@ hr {
     width: 100%;
 }
 
-/* Icon-only */
+/* icon-only */
 .button-tertiary-icon {
     background: transparent;
     border: none;
     color: var(--text);
     padding: 8px;
-    color: var(--text);
     font: inherit;
 }
 
@@ -303,4 +319,26 @@ input:focus {
     flex: 1;
     padding: 16px;
     height: 60px;
+}
+
+.input-slider {
+    position: relative;
+    width: 38px;
+    height: 21px;
+    display: flex;
+    border: 2px solid white;
+    border-radius: 99px;
+    transition: ease 150ms;
+}
+
+.input-slider::before {
+    content: "";
+    position: absolute;
+    background: white;
+    border-radius: 99px;
+    top: 4px;
+    left: 4px;
+    width: 13px ;
+    height: 13px ;
+    transition: ease 150ms;
 }
