@@ -210,11 +210,9 @@ hr {
 /* -------------------------------- CHECKBOX -------------------------------- */
 
 /* <label> wrapper that sizes the icon and handles press animation */
-.label-checkbox {
+label {
     display: flex;
     align-items: center;
-    width: 32px;
-    height: 32px;
     cursor: pointer;
     transition: ease 150ms;
 }
