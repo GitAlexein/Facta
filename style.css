@@ -128,7 +128,7 @@ a {
     padding: 16px 32px 32px 32px;
 }
 
-/* box to show a messages */
+/* box to show a message */
 .box {
     display: flex;
     flex-direction: column;
@@ -227,7 +227,7 @@ hr {
 }
 
 /* Native checkbox is hidden — state drives the SVG icons below */
-.task-checkbox {
+input[type="checkbox"] {
     display: none;
 }
 
@@ -256,20 +256,20 @@ hr {
     font-weight: 550;
 }
 
-/* Filled — primary action ("Add task") */
+/* filled + border */
 .button-primary {
     flex: 1;
     background-color: var(--primary);
     color: black;
 }
 
-/* Ghost — border only, transparent fill (settings, cancel) */
+/* border only, no background */
 .button-secondary {
     width: fit-content;
     background-color: transparent;
 }
 
-/* No border, no background (skip/options) */
+/* no border, no background */
 .button-tertiary-text {
     background: transparent;
     border: none;
@@ -277,13 +277,12 @@ hr {
     width: 100%;
 }
 
-/* Icon-only */
+/* icon-only */
 .button-tertiary-icon {
     background: transparent;
     border: none;
     color: var(--text);
     padding: 8px;
-    color: var(--text);
     font: inherit;
 }
 
