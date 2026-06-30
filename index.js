@@ -140,10 +140,15 @@ function updateInputSave(id, e) {
 
 // FUNCTION - Removes task
 function deleteTask(id) {
+    if (localStorage.getItem("confirmTaskDeletion") === "true") {
     if (confirm("Sei sicuro di voler eliminare questa task? Puoi sempre eliminare l'intera lista dalle impostazioni.") === true) {
         taskStore.remove(id);
         renderTaskList();
     };
+    } else {
+        taskStore.remove(id);
+        renderTaskList();
+    }
 };
 
 // FUNCTION - Renders task list
