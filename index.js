@@ -61,21 +61,47 @@ function inputTaskNewDefault() {
 // Task button click and focus
 let inputTaskNewDiv = document.getElementById("inputTaskNewDiv")
 
-buttonTaskNew.addEventListener("click", function() {;
+
+function itnShow() { // itn = inputTaskNew
     buttonTaskNew.style.display = "none";
     buttonSettings.style.display = "none";
     buttonTaskCancel.style.display = "";
     inputTaskNewDiv.style.display = "flex";
     inputTaskNew.focus();
+    document.addEventListener("keydown", cancelShortcut);
+};
+
+buttonTaskNew.addEventListener("click", function() {;
+    itnShow();
+});
+
+document.addEventListener("keydown", function(e){
+    let modifier = e.ctrlKey || e.metaKey;
+    if (modifier && e.key === "n") {
+        e.preventDefault();
+        itnShow();
+    }
 });
 
 // Cancels the creation of a new task
-buttonTaskCancel.addEventListener("click", function(){
+function itnCancel() { // itn = inputTaskNew
     buttonTaskCancel.style.display = "none";
     inputTaskNewDiv.style.display = "none";
     inputTaskNewDefault();
     buttonTaskNew.style.display = "";
     buttonSettings.style.display = "";
+};
+
+function cancelShortcut(e) {
+    if (e.key === "Escape") {
+        e.preventDefault();
+        itnCancel();
+        document.removeEventListener("keydown", cancelShortcut);
+    };
+};
+
+buttonTaskCancel.addEventListener("click", function(){
+    itnCancel();
 });
 
 // FUNCTION - Saves task and changes appearances
