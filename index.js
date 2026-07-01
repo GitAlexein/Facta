@@ -59,7 +59,7 @@ function inputTaskNewDefault() {
 }
 
 // Task button click and focus
-let inputTaskNewDiv = document.getElementById("inputTaskNewDiv")
+let inputTaskNewDiv = document.getElementById("inputTaskNewDiv");
 
 
 function itnShow() { // itn = inputTaskNew
@@ -71,16 +71,13 @@ function itnShow() { // itn = inputTaskNew
     document.addEventListener("keydown", cancelShortcut);
 };
 
-buttonTaskNew.addEventListener("click", function() {;
-    itnShow();
-});
+buttonTaskNew.addEventListener("click", itnShow);
 
 document.addEventListener("keydown", function(e){
-    let modifier = e.ctrlKey || e.metaKey;
-    if (modifier && e.key === "n") {
+    if (e.altKey && e.code === "KeyN") {
         e.preventDefault();
         itnShow();
-    }
+    };
 });
 
 // Cancels the creation of a new task
@@ -100,9 +97,7 @@ function cancelShortcut(e) {
     };
 };
 
-buttonTaskCancel.addEventListener("click", function(){
-    itnCancel();
-});
+buttonTaskCancel.addEventListener("click", itnCancel);
 
 // FUNCTION - Saves task and changes appearances
 function finalizeTask() {
