@@ -31,7 +31,7 @@ if (hour < 6) {
     greeting.innerText = "Buon pomeriggio";
 } else {
     greeting.innerText = "Buonasera";
-}
+};
 
 // Reads the empty list view (div)
 let emptyListView = document.getElementById("emptyListView");
@@ -59,24 +59,45 @@ function inputTaskNewDefault() {
 }
 
 // Task button click and focus
-let inputTaskNewDiv = document.getElementById("inputTaskNewDiv")
+let inputTaskNewDiv = document.getElementById("inputTaskNewDiv");
 
-buttonTaskNew.addEventListener("click", function() {;
+
+function itnShow() { // itn = inputTaskNew
     buttonTaskNew.style.display = "none";
     buttonSettings.style.display = "none";
     buttonTaskCancel.style.display = "";
     inputTaskNewDiv.style.display = "flex";
     inputTaskNew.focus();
+    document.addEventListener("keydown", cancelShortcut);
+};
+
+buttonTaskNew.addEventListener("click", itnShow);
+
+document.addEventListener("keydown", function(e){
+    if (e.altKey && e.code === "KeyN") {
+        e.preventDefault();
+        itnShow();
+    };
 });
 
 // Cancels the creation of a new task
-buttonTaskCancel.addEventListener("click", function(){
+function itnCancel() { // itn = inputTaskNew
     buttonTaskCancel.style.display = "none";
     inputTaskNewDiv.style.display = "none";
     inputTaskNewDefault();
     buttonTaskNew.style.display = "";
     buttonSettings.style.display = "";
-});
+};
+
+function cancelShortcut(e) {
+    if (e.key === "Escape") {
+        e.preventDefault();
+        itnCancel();
+        document.removeEventListener("keydown", cancelShortcut);
+    };
+};
+
+buttonTaskCancel.addEventListener("click", itnCancel);
 
 // FUNCTION - Saves task and changes appearances
 function finalizeTask() {
@@ -87,7 +108,7 @@ function finalizeTask() {
     buttonTaskCancel.style.display = "none";
     inputTaskNewDiv.style.display= "none";
     inputTaskNewDefault();
-}
+};
 
 // Reads the hidden error message
 let errorTaskEmpty = document.getElementById("errorTaskEmpty");
