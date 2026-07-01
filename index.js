@@ -31,7 +31,7 @@ if (hour < 6) {
     greeting.innerText = "Buon pomeriggio";
 } else {
     greeting.innerText = "Buonasera";
-}
+};
 
 // Reads the empty list view (div)
 let emptyListView = document.getElementById("emptyListView");
@@ -113,7 +113,7 @@ function finalizeTask() {
     buttonTaskCancel.style.display = "none";
     inputTaskNewDiv.style.display= "none";
     inputTaskNewDefault();
-}
+};
 
 // Reads the hidden error message
 let errorTaskEmpty = document.getElementById("errorTaskEmpty");
