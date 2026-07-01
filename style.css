@@ -29,10 +29,6 @@
         opacity: 50%;
     }
 
-    .button-secondary:active {
-        background-color: var(--secondary);
-    }
-
     /* Scale up slightly instead of just dimming */
     .button-tertiary-text:hover, .button-tertiary-icon:hover {
         background-color: var(--surface);
@@ -265,6 +261,10 @@ input[type="checkbox"] {
 .button-secondary {
     width: fit-content;
     background-color: transparent;
+}
+
+.button-secondary:active {
+    background-color: var(--secondary);
 }
 
 /* no border, no background */
