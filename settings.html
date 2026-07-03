@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facta - Impostazioni</title>
     <link rel="stylesheet" href="style.css">
-    <!--Montserrat-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--Montserrat-->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <!--DM Sans-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -24,12 +22,12 @@
             <span>Cambia nome</span>
             <span style="display: flex;"><img src="assets/name-edit tertiary.svg" alt=""></span>
         </button>
-        <hr size="1">
+        <hr>
         <button class="button button-tertiary-text" id="buttonListClear">
             <span>Svuota la lista</span>
             <span style="display: flex;"><img src="assets/reset tertiary.svg" alt=""></span>
         </button>
-        <hr size="1">
+        <hr>
         <div class="div-toggle">
             <p>Conferma prima di eliminare</p>
             <label class="label-toggle">
@@ -38,21 +36,46 @@
                 </span>
             </label>
         </div>
-        <hr size="1">
+        <hr>
         <p class="text-info">Le task vengono salvate localmente e non sono sincronizzate con altri dispositivi, nessuno può accedervi.</p>
-        <p class="text-info" style="color: #E74245; margin-top: -8px;">Cancellando la cronologia è possibile che i dati vengano eliminati.</p>
-
-            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 32px 0 32px; margin-top: auto;">
-                <a href="https://www.youtube.com/@praxisum.design" ><img src="assets/youtube.svg" alt="Vai al canale Youtube"></a>
-                <a href="https://www.instagram.com/praxisum.design/"><img src="assets/instagram.svg" alt="Vai al profilo Instagram"></a>
-                <a href="https://discord.gg/pS5j2CjTEZ"><img src="assets/discord.svg" alt="Vai al server Discord"></a>
-            </div>
+        <p class="text-info" style="color: var(--danger); margin-top: -8px;">Cancellando la cronologia è possibile che i dati vengano eliminati.</p>
     </div>
+
+    <footer>
+        <div class="div-footer">
+            <a href="https://www.praxisum.it/">
+                <img src="assets/praxisum tertiary.svg" alt="">
+                <span>Praxisum</span>
+            </a>
+            <a href="https://github.com/GitAlexein?tab=repositories">
+                <img src="assets/github tertiary.svg" alt="">
+                <span>Github</span>
+            </a>
+            <a href="https://www.youtube.com/@praxisum.design/">
+                <img src="assets/youtube.svg" alt="">
+                <span>Youtube</span>
+            </a>
+        </div>
+        <div class="div-footer">
+            <a href="https://www.instagram.com/praxisum.design/">
+                <img src="assets/instagram.svg" alt="">
+                <span>Instagram</span>
+            </a>
+            <a href="https://discord.gg/pS5j2CjTEZ/">
+                <img src="assets/discord.svg" alt="">
+                <span>Discord</span>
+            </a>
+            <a href="mailto:hellopraxisum@protonmail.com">
+                <img src="assets/email tertiary.svg" alt="">
+                <span>Email</span>
+            </a>
+        </div>
+    </footer>
 
     <div class="bar bar-bottom">
         <button class="button button-tertiary-text" id="buttonBack">
             <span>Indietro</span>
-            <span style="display: flex;"><img src="assets//arrow tertiary.svg" alt="" style="rotate: 180deg;"></span>
+            <span style="display: flex;"><img src="assets/arrow tertiary.svg" alt="" style="rotate: 180deg;"></span>
         </button>
     </div>
 
