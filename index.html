@@ -1,54 +1,52 @@
 <!DOCTYPE html>
 <html lang="it">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Facta</title>
-        <link rel="stylesheet" href="style.css">
-        <!--Montserrat-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-        <!--DM Sans-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <div class="bar bar-top">
-            <h1><span id="greeting">Se vedi questo testo qualcosa è andato storto :D</span><span id="name"></span>,</h1>
-            <span id="encouragement">Comincia a completare le tue task!</span>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facta - Task</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--Montserrat-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <!--DM Sans-->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bar bar-top">
+        <h1><span id="greeting">Se vedi questo testo qualcosa è andato storto :D</span><span id="name"></span>,</h1>
+        <span id="encouragement">Comincia a completare le tue task!</span>
+    </div>
+
+    <div class="main" id="taskView"></div>
+    <div class="main" style="display: none; gap: 16px; padding-top: 32px;" id="emptyListView">
+        <div class="box box-danger" style="background: linear-gradient(color-mix(in srgb, var(--danger) 25%, transparent), transparent);">
+            <p>Le task vengono salvate localmente e non sono sincronizzate con altri dispositivi, nessuno può accedervi.</p>
+            <p style="color: var(--danger); margin-top: -8px;">Cancellando la cronologia è possibile che i dati vengano eliminati.</p>
         </div>
-
-            <div class="main" id="taskView"></div>
-            <div class="main" style="display: none; gap: 16px; padding-top: 32px;" id="emptyListView">
-                <div class="box box-danger" style="background: linear-gradient(color-mix(in srgb, var(--danger) 25%, transparent), transparent);">
-                    <p>Le task vengono salvate localmente e non sono sincronizzate con altri dispositivi, nessuno può accedervi.</p>
-                    <p style="color: var(--danger); margin-top: -8px;">Cancellando la cronologia è possibile che i dati vengano eliminati.</p>
-                </div>
-                <div class="box box-empty">
-                    <p style="color: var(--accent);">Aggiungi una task per visualizzarla qui</p>
-                </div>
-            </div>
-
-        <div class="bar bar-bottom" style="flex-direction: row;">
-            <button class="button button-secondary" id="buttonSettings">
-                <img src="assets/settings secondary.svg" alt="Apri le impostazioni">
-            </button>
-            <button class="button button-primary" id="buttonTaskNew">
-                <span>Aggiungi una task</span>
-                <span style="display: flex;"><img src="assets/plus primary.svg" alt=""></span>
-            </button>
-            <button class="button button-secondary" style="display: none;" id="buttonTaskCancel">
-                <img src="assets/cancel secondary.svg" alt="Annulla inserimento task">
-            </button>
-            <div style="flex: 1; display: none; flex-direction: column;" id="inputTaskNewDiv">
-                <input type="text" id="inputTaskNew" placeholder="Inserisci la task">
-                <span class="text-info" style="color: var(--danger-accent); margin-top: 4px; display: none;" id="errorTaskEmpty">La task è vuota! Prova a scrivere qualcosa.</span>
-            </div>
+        <div class="box box-empty">
+            <p style="color: var(--accent);">Aggiungi una task per visualizzarla qui</p>
         </div>
+    </div>
 
-        <script src="taskStore.js"></script>
-        <script src="index.js"></script>
-    </body>
+    <div class="bar bar-bottom" style="flex-direction: row;">
+        <button class="button button-secondary" id="buttonSettings">
+            <img src="assets/settings secondary.svg" alt="Apri le impostazioni">
+        </button>
+        <button class="button button-primary" id="buttonTaskNew">
+            <span>Aggiungi una task</span>
+            <span style="display: flex;"><img src="assets/plus primary.svg" alt=""></span>
+        </button>
+        <button class="button button-secondary" style="display: none;" id="buttonTaskCancel">
+            <img src="assets/cancel secondary.svg" alt="Annulla inserimento task">
+        </button>
+        <div style="flex: 1; display: none; flex-direction: column;" id="inputTaskNewDiv">
+            <input type="text" id="inputTaskNew" placeholder="Inserisci la task">
+            <span class="text-info" style="color: var(--danger-accent); margin-top: 4px; display: none;" id="errorTaskEmpty">La task è vuota! Prova a scrivere qualcosa.</span>
+        </div>
+    </div>
+
+    <script src="taskStore.js"></script>
+    <script src="index.js"></script>
+</body>
 </html>
