@@ -33,6 +33,30 @@ if (hour < 6) {
     greeting.innerText = "Buonasera";
 };
 
+// Reads encouragement
+let encouragement = document.getElementById("encouragement");
+
+// Dynamic encouragement function
+function renderEncouragement(){
+    let tasks = taskStore.getAll();
+    let taskNumber = tasks.length;
+    let taskDoneNumber = tasks.filter(t => t.done === true).length;
+
+    if (taskNumber === taskDoneNumber && taskNumber > 1) {
+        encouragement.innerText = "Ce l'hai fatta!";
+    } else if (taskNumber === 0) {
+        encouragement.innerText = "Crea la tua prima task!";
+    } else if (taskNumber >= 1 && taskDoneNumber < 1) {
+        encouragement.innerText = "Comincia a completare le tue task";
+    } else if (taskDoneNumber >= taskNumber*0.75) {
+        encouragement.innerText = "Continua così...";
+    } else if (taskDoneNumber >= taskNumber*0.5) {
+        encouragement.innerText = "Ci sei quasi...";
+    } else if (taskDoneNumber >= 1) {
+        encouragement.innerText = "Continua così!";
+    };
+};
+
 // Reads the empty list view (div)
 let emptyListView = document.getElementById("emptyListView");
 
@@ -200,4 +224,5 @@ if (tasks.length === 0) {
     });
     taskView.innerHTML = taskListView.join(" ");
     };
+    renderEncouragement();
     };
