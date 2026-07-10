@@ -371,3 +371,135 @@ input:focus {
     height: 13px ;
     transition: ease 150ms;
 }
+
+
+
+/* --------------------------------- DESKTOP -------------------------------- */
+/*  ≥ 900px. Reuses every mobile component; only re-lays-out the pages.       */
+/*  Per-page scoping via :has() so no markup or JS changes are needed:        */
+/*    body:has(#taskView)     → task list / empty state  (index.html)         */
+/*    body:has(footer)        → settings                 (settings.html)      */
+/*    body:has(.illustration) → welcome                  (welcome.html)       */
+
+@media (min-width: 900px) {
+
+    /* Shared: larger headings + roomier header */
+    h1 { font-size: 40px; }
+
+    .bar-top { padding: 32px 48px; }
+
+
+    /* ---------- TASK LIST + EMPTY STATE (index.html) ---------- */
+
+    /* Centre the scrollable content in an 800px column */
+    body:has(#taskView) .main {
+        width: 100%;
+        max-width: 864px;          /* 800 content + 2×32 padding */
+        margin-inline: auto;
+        padding: 48px 32px;
+    }
+
+    /* Lift the action buttons into the header's top-right */
+    body:has(#taskView) .bar-bottom {
+        position: fixed;
+        top: 24px;
+        right: 48px;
+        width: auto;
+        padding: 0;
+        gap: 16px;
+        border: none;
+        background: transparent;
+        z-index: 20;
+    }
+
+    /* "+" before the gear, matching the design order */
+    body:has(#taskView) #buttonTaskNew    { order: 1; }
+    body:has(#taskView) #buttonTaskCancel { order: 1; }
+    body:has(#taskView) #buttonSettings   { order: 2; }
+
+    /* Circular icon buttons */
+    body:has(#taskView) .bar-bottom .button-primary,
+    body:has(#taskView) .bar-bottom .button-secondary {
+        width: 56px;
+        height: 56px;
+        padding: 0;
+        flex: none;
+        border-radius: 50%;
+        justify-content: center;
+    }
+
+    /* Keep only the "+" icon on the add button (hide its label) */
+    body:has(#taskView) #buttonTaskNew > span:first-child { display: none; }
+
+    /* Keep the inline add-task input usable when it expands */
+    body:has(#taskView) #inputTaskNewDiv { min-width: 340px; }
+
+
+    /* ---------------- SETTINGS (settings.html) ---------------- */
+
+    body:has(footer) .main {
+        width: 100%;
+        max-width: 864px;
+        margin-inline: auto;
+        padding: 48px 32px 32px;
+    }
+
+    /* "Indietro" → header top-right (footer owns the bottom on desktop) */
+    body:has(footer) .bar-bottom {
+        position: fixed;
+        top: 28px;
+        right: 48px;
+        width: auto;
+        padding: 0;
+        border: none;
+        background: transparent;
+        z-index: 20;
+    }
+    body:has(footer) .bar-bottom .button-tertiary-text { width: auto; }
+
+    /* Footer: one full-width row of six links, evenly spaced */
+    footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 32px 48px;
+    }
+    footer .div-footer { display: contents; }
+
+    /* Interleave to the design order:
+       Praxisum · Instagram · Github · Discord · Youtube · Email */
+    footer .div-footer:nth-child(1) a:nth-child(1) { order: 1; } /* Praxisum  */
+    footer .div-footer:nth-child(2) a:nth-child(1) { order: 2; } /* Instagram */
+    footer .div-footer:nth-child(1) a:nth-child(2) { order: 3; } /* Github    */
+    footer .div-footer:nth-child(2) a:nth-child(2) { order: 4; } /* Discord   */
+    footer .div-footer:nth-child(1) a:nth-child(3) { order: 5; } /* Youtube   */
+    footer .div-footer:nth-child(2) a:nth-child(3) { order: 6; } /* Email     */
+
+
+    /* ---------------- WELCOME (welcome.html) ------------------ */
+
+    /* Split screen: form column left, gradient panel right */
+    body:has(.illustration) {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        grid-template-rows: auto 1fr auto;
+        height: 100dvh;
+    }
+    body:has(.illustration) .bar-top {
+        grid-column: 1;
+        grid-row: 1;
+        border: none;
+    }
+    body:has(.illustration) .bar-bottom {
+        grid-column: 1;
+        grid-row: 3;
+        border: none;
+    }
+    body:has(.illustration) .illustration {
+        grid-column: 2;
+        grid-row: 1 / -1;
+    }
+    .bottom-divider-welcome-page {
+        line-height: 100;
+    }
+}
