@@ -187,6 +187,7 @@ a {
     flex: 1;
     min-height: 0;
     padding: 0;
+    transition: 300ms ease;
 }
 
 hr {
@@ -370,4 +371,98 @@ input:focus {
     width: 13px ;
     height: 13px ;
     transition: ease 150ms;
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                               DESKTOP LAYOUT                               */
+/* -------------------------------------------------------------------------- */
+
+@media (min-width: 1000px) {
+
+/* --------------------------------- Shared --------------------------------- */
+
+.bar-top {
+    padding: 32px;
+}
+
+/* ------------------------------ welcome.html ------------------------------ */
+
+#welcomePage {
+    flex-direction: row;
+}
+
+#welcomePage #barTop {
+    padding: 64px;
+    gap: 32px;
+    align-items: center;
+}
+
+#welcomePage #barBottom {
+    padding: 0;
+    border: none;
+    margin: auto;
+    gap: 16px;
+}
+
+/* ------------------------------- index.html ------------------------------- */
+
+#taskView {
+    padding-right: 24%;
+    padding-left: 24%;
+}
+
+#indexPage #barTop {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#indexPage #barBottom {
+    padding: 0;
+    border: none;
+    gap: 16px;
+}
+
+#emptyListView {
+    padding-left: 24%;
+    padding-right: 24%;
+}
+
+/* ------------------------------ settings.html ----------------------------- */
+
+#settingsPage .main {
+    padding-left: 24%;
+    padding-right: 24%;
+}
+
+#settingsPage #barTop {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#settingsPage #barBottom {
+    padding: 0;
+    border: none;
+}
+
+footer .div-footer { display: contents; }
+
+/* Footer: one full-width row of six links, evenly spaced */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px;
+}
+
+/* Praxisum · Github · Youtube · Instagram · Discord · Email */
+footer .div-footer:nth-child(1) a:nth-child(1) { order: 1; }
+footer .div-footer:nth-child(1) a:nth-child(2) { order: 2; }
+footer .div-footer:nth-child(1) a:nth-child(3) { order: 3; }
+footer .div-footer:nth-child(2) a:nth-child(1) { order: 4; }
+footer .div-footer:nth-child(2) a:nth-child(2) { order: 5; }
+footer .div-footer:nth-child(2) a:nth-child(3) { order: 6; }
+
 }

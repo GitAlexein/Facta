@@ -1,3 +1,37 @@
+// Desktop layout
+function desktopLayout() {
+    let width = window.innerWidth;
+    let barTop = document.getElementById("barTop");
+    let barBottom = document.getElementById("barBottom");
+    let welcomeIllustration = document.getElementById("welcomeIllustration");
+    let body = document.getElementById("welcomePage");
+    if (width >= 1000) {
+        barTop.appendChild(barBottom);
+        if (width < 1230) {
+            welcomeIllustration.style.padding = "64px";
+        } else {
+            welcomeIllustration.style.padding = "0";
+        }
+        if (width < 1175) {
+            barTop.style.padding = "32px";
+        } else {
+            barTop.style.padding = "";
+        }
+    } else {
+        body.appendChild(barBottom);
+        welcomeIllustration.style.padding = "0";
+        barTop.style.padding = "";
+    }
+}
+
+// Corrects layout for the first time
+desktopLayout();
+
+// Corrects layout every time a resize happens
+window.addEventListener("resize", function() {
+    desktopLayout();
+})
+
 // Reads buttons and inputs
 let inputNameNew = document.getElementById("inputNameNew");
 let buttonNameNew = document.getElementById("buttonNameNew");

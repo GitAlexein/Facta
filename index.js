@@ -8,6 +8,30 @@ if (!localStorage.getItem("hasVisited")) {
   window.location.replace("welcome.html");
 };
 
+// Desktop layout
+function desktopLayout() {
+    let width = window.innerWidth;
+    let barTop = document.getElementById("barTop");
+    let barBottom = document.getElementById("barBottom");
+    let buttonTaskNew = document.getElementById("buttonTaskNew");
+    let body = document.getElementById("indexPage");
+    if (width >= 1000) {
+        barTop.appendChild(barBottom);
+        buttonTaskNew.firstElementChild.style.display = "none";
+    } else {
+        body.appendChild(barBottom);
+        buttonTaskNew.firstElementChild.style.display = "";
+    }
+}
+
+// Corrects layout for the first time
+desktopLayout();
+
+// Corrects layout every time a resize happens
+window.addEventListener("resize", function() {
+    desktopLayout();
+})
+
 // Reads greeting and name
 let greeting = document.getElementById("greeting");
 let name = document.getElementById("name");

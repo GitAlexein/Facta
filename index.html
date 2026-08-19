@@ -12,10 +12,12 @@
     <!--DM Sans-->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="bar bar-top">
-        <h1><span id="greeting">Se vedi questo testo qualcosa è andato storto :D</span><span id="name"></span>,</h1>
-        <span id="encouragement">Comincia a completare le tue task!</span>
+<body id="indexPage">
+    <div class="bar bar-top" id="barTop">
+        <div id="greetEncourageDiv">
+            <h1><span id="greeting">Se vedi questo testo qualcosa è andato storto :D</span><span id="name"></span>,</h1>
+            <span id="encouragement">Comincia a completare le tue task!</span>
+        </div>
     </div>
 
     <div class="main" id="taskView"></div>
@@ -29,7 +31,7 @@
         </div>
     </div>
 
-    <div class="bar bar-bottom" style="flex-direction: row;">
+    <div class="bar bar-bottom" style="flex-direction: row;" id="barBottom">
         <button class="button button-secondary" id="buttonSettings">
             <img src="assets/settings secondary.svg" alt="Apri le impostazioni">
         </button>
