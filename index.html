@@ -32,20 +32,20 @@
     </div>
 
     <div class="bar bar-bottom" style="flex-direction: row;" id="barBottom">
-        <button class="button button-secondary" id="buttonSettings">
-            <img src="assets/settings secondary.svg" alt="Apri le impostazioni">
-        </button>
         <button class="button button-primary" id="buttonTaskNew">
             <span>Aggiungi una task</span>
             <span style="display: flex;"><img src="assets/plus primary.svg" alt=""></span>
-        </button>
-        <button class="button button-secondary" style="display: none;" id="buttonTaskCancel">
-            <img src="assets/cancel secondary.svg" alt="Annulla inserimento task">
         </button>
         <div style="flex: 1; display: none; flex-direction: column;" id="inputTaskNewDiv">
             <input type="text" id="inputTaskNew" placeholder="Inserisci la task">
             <span class="text-info" style="color: var(--danger-accent); margin-top: 4px; display: none;" id="errorTaskEmpty">La task è vuota! Prova a scrivere qualcosa.</span>
         </div>
+        <button class="button button-secondary" id="buttonSettings">
+            <img src="assets/settings secondary.svg" alt="Apri le impostazioni">
+        </button>
+        <button class="button button-secondary" style="display: none;" id="buttonTaskCancel">
+            <img src="assets/cancel secondary.svg" alt="Annulla inserimento task">
+        </button>
     </div>
 
     <script src="taskStore.js"></script>
