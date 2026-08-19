@@ -4,7 +4,7 @@ document.body.addEventListener("touchstart", function() {});
 // Checks if user is already logged
 if (!localStorage.getItem("hasVisited")) {
   localStorage.setItem("hasVisited", "true");
-  localStorage.setItem("confirmTaskDeletion", "true")
+  localStorage.setItem("confirmTaskDeletion", "true");
   window.location.replace("welcome.html");
 };
 
@@ -69,7 +69,7 @@ function renderEncouragement(){
     if (taskNumber === taskDoneNumber && taskNumber > 1) {
         encouragement.innerText = "Ce l'hai fatta!";
     } else if (taskNumber === 0) {
-        encouragement.innerText = "Crea la tua prima task!";
+        encouragement.innerText = "Crea la prima task!";
     } else if (taskNumber >= 1 && taskDoneNumber < 1) {
         encouragement.innerText = "Comincia a completare le tue task";
     } else if (taskDoneNumber >= taskNumber*0.75) {
