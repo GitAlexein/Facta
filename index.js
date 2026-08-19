@@ -4,9 +4,33 @@ document.body.addEventListener("touchstart", function() {});
 // Checks if user is already logged
 if (!localStorage.getItem("hasVisited")) {
   localStorage.setItem("hasVisited", "true");
-  localStorage.setItem("confirmTaskDeletion", "true")
+  localStorage.setItem("confirmTaskDeletion", "true");
   window.location.replace("welcome.html");
 };
+
+// Desktop layout
+function desktopLayout() {
+    let width = window.innerWidth;
+    let barTop = document.getElementById("barTop");
+    let barBottom = document.getElementById("barBottom");
+    let buttonTaskNew = document.getElementById("buttonTaskNew");
+    let body = document.getElementById("indexPage");
+    if (width >= 1000) {
+        barTop.appendChild(barBottom);
+        buttonTaskNew.firstElementChild.style.display = "none";
+    } else {
+        body.appendChild(barBottom);
+        buttonTaskNew.firstElementChild.style.display = "";
+    }
+}
+
+// Corrects layout for the first time
+desktopLayout();
+
+// Corrects layout every time a resize happens
+window.addEventListener("resize", function() {
+    desktopLayout();
+})
 
 // Reads greeting and name
 let greeting = document.getElementById("greeting");
@@ -45,7 +69,7 @@ function renderEncouragement(){
     if (taskNumber === taskDoneNumber && taskNumber > 1) {
         encouragement.innerText = "Ce l'hai fatta!";
     } else if (taskNumber === 0) {
-        encouragement.innerText = "Crea la tua prima task!";
+        encouragement.innerText = "Crea la prima task!";
     } else if (taskNumber >= 1 && taskDoneNumber < 1) {
         encouragement.innerText = "Comincia a completare le tue task";
     } else if (taskDoneNumber >= taskNumber*0.75) {
