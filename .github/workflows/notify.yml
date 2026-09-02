@@ -1,0 +1,15 @@
+name: Notify praxisum
+on:
+  push:
+    branches: [main]
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -fsS -X POST \
+            -H "Authorization: Bearer ${{ secrets.PraxisumPAT }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/GitAlexein/praxisum/dispatches \
+            -d '{"event_type":"facta-updated"}'
