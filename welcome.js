@@ -6,7 +6,7 @@ function desktopLayout() {
     let welcomeIllustration = document.getElementById("welcomeIllustration");
     let body = document.getElementById("welcomePage");
     // The bar is only moved when it is in the wrong place: re-appending it detaches
-    // the node and blurs the input inside, which closes the keyboard on mobile
+    // The node and blurs the input inside, which closes the keyboard on mobile
     if (width >= 1000) {
         if (barBottom.parentElement !== barTop) {
             barTop.appendChild(barBottom);
