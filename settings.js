@@ -5,11 +5,17 @@ function desktopLayout() {
     let barBottom = document.getElementById("barBottom");
     let body = document.getElementById("settingsPage");
     let buttonBack = document.getElementById("buttonBack");
+    // The bar is only moved when it is in the wrong place: re-appending it detaches
+    // the node and blurs the input inside, which closes the keyboard on mobile
     if (width >= 1000) {
-        barTop.appendChild(barBottom);
+        if (barBottom.parentElement !== barTop) {
+            barTop.appendChild(barBottom);
+        };
         buttonBack.firstElementChild.style.display = "none";
     } else {
-        body.appendChild(barBottom);
+        if (barBottom.parentElement !== body) {
+            body.appendChild(barBottom);
+        };
         buttonBack.firstElementChild.style.display = "";
     }
 }

@@ -5,8 +5,12 @@ function desktopLayout() {
     let barBottom = document.getElementById("barBottom");
     let welcomeIllustration = document.getElementById("welcomeIllustration");
     let body = document.getElementById("welcomePage");
+    // The bar is only moved when it is in the wrong place: re-appending it detaches
+    // the node and blurs the input inside, which closes the keyboard on mobile
     if (width >= 1000) {
-        barTop.appendChild(barBottom);
+        if (barBottom.parentElement !== barTop) {
+            barTop.appendChild(barBottom);
+        };
         if (width < 1230) {
             welcomeIllustration.style.padding = "64px";
         } else {
@@ -18,7 +22,9 @@ function desktopLayout() {
             barTop.style.padding = "";
         }
     } else {
-        body.appendChild(barBottom);
+        if (barBottom.parentElement !== body) {
+            body.appendChild(barBottom);
+        };
         welcomeIllustration.style.padding = "0";
         barTop.style.padding = "";
     }
