@@ -27,6 +27,31 @@ function desktopLayout() {
 // Corrects layout for the first time
 desktopLayout();
 
+// ===== EASTEREGG - AerusW mode =====
+// Triggered when the saved name is exactly "AerusW".
+// Every interaction becomes irreversible: no confirmations, no undo, no going back.
+// Changing the name from the settings disables it.
+let AerusW_mode = (localStorage.getItem("name") || "").trim() === "AerusW";
+
+// Messages shown by the easteregg
+let eastereggMessages = {
+    name: "You discovered an easteregg, this will significantly impact the way this website behaves. Change your name to disable this feature"
+};
+
+// Warns only once, right after the name is set (from the welcome page or the settings)
+function eastereggAlert(reason){
+    if (AerusW_mode !== true) {
+        localStorage.removeItem("eastereggWarned");   // ready to warn again if the name comes back
+        return;
+    };
+    if (localStorage.getItem("eastereggWarned") === "true") return;
+    let message = eastereggMessages[reason];
+    if (message) {
+        alert(message);
+        localStorage.setItem("eastereggWarned", "true");
+    };
+};
+
 // Corrects layout every time a resize happens
 window.addEventListener("resize", function() {
     desktopLayout();
@@ -42,6 +67,8 @@ if (nameSaved !== null && nameSaved !== "") {
     let nameEdited = ` ${nameSaved.trim()}`;
     name.innerText = nameEdited;
 };
+// Warns about the easteregg being active
+eastereggAlert("name");
 
 // Displays greeting
 let date = new Date();
@@ -209,15 +236,14 @@ function updateInputSave(id, e) {
 
 // FUNCTION - Removes task
 function deleteTask(id) {
-    if (localStorage.getItem("confirmTaskDeletion") === "true") {
-        if (confirm("Sei sicuro di voler eliminare questa task? Puoi sempre eliminare l'intera lista dalle impostazioni.") === true) {
-            taskStore.remove(id);
-            renderTaskList();
+    // EASTEREGG - the confirmation is skipped entirely, the task is gone on the first click
+    if (AerusW_mode === false && localStorage.getItem("confirmTaskDeletion") === "true") {
+        if (confirm("Sei sicuro di voler eliminare questa task? Puoi sempre eliminare l'intera lista dalle impostazioni.") === false) {
+            return;
+        };
     };
-    } else {
-        taskStore.remove(id);
-        renderTaskList();
-    };
+    taskStore.remove(id);
+    renderTaskList();
 };
 
 // FUNCTION - Renders task list

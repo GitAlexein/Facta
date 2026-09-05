@@ -17,6 +17,9 @@ function desktopLayout() {
 // Corrects layout for the first time
 desktopLayout();
 
+// EASTEREGG - AerusW mode, see index.js
+let AerusW_mode = (localStorage.getItem("name") || "").trim() === "AerusW";
+
 // Corrects layout every time a resize happens
 window.addEventListener("resize", function(){
     desktopLayout();
@@ -46,10 +49,12 @@ buttonNameChange.addEventListener("click", function(){
 
 // Clear list button
 buttonListClear.addEventListener("click", function(){
-    if (confirm("Sei sicuro di voler eliminare l'intera lista? Questa azione è irreversibile.") === true) {
-        taskStore.clear();
-        window.location.href = "index.html";
+    // EASTEREGG - the list is wiped on the first click, without asking
+    if (AerusW_mode === false && confirm("Sei sicuro di voler eliminare l'intera lista? Questa azione è irreversibile.") === false) {
+        return;
     };
+    taskStore.clear();
+    window.location.href = "index.html";
 });
 
 // Toggle for task deletion confirmation
@@ -59,7 +64,18 @@ if (tdcState === "true") {
    toggleDeleteConfirm.checked = true;
 };
 
+// EASTEREGG - the confirmation can't be turned back on
+if (AerusW_mode === true) {
+    toggleDeleteConfirm.checked = false;
+    localStorage.setItem("confirmTaskDeletion", "false");
+};
+
 toggleDeleteConfirm.addEventListener("change", function(){
+    if (AerusW_mode === true) {
+        toggleDeleteConfirm.checked = false;
+        alert("Le conferme non esistono più, ogni azione è definitiva.");
+        return;
+    };
     if (toggleDeleteConfirm.checked === true) {
         localStorage.setItem("confirmTaskDeletion", "true");
     } else {
