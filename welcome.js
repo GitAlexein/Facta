@@ -51,7 +51,7 @@ inputNameNew.addEventListener("keydown", function(e){
 // Saves name
 function saveName() {
     if (inputNameNew.value.trim() !== "") {
-        localStorage.setItem("name", inputNameNew.value)
+        localStorage.setItem("name", inputNameNew.value.trim())
         window.location.href = "index.html"
     } else {
         alert("Non hai inserito nessun nome. Per continuare inseriscine uno o salta questo passaggio.")
