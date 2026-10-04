@@ -69,13 +69,7 @@ let tdcState = localStorage.getItem("confirmTaskDeletion");
 if (tdcState === "true") {
    toggleDeleteConfirm.checked = true;
 };
-
-// EASTEREGG - the confirmation can't be turned back on
-if (AerusW_mode === true) {
-    toggleDeleteConfirm.checked = false;
-    localStorage.setItem("confirmTaskDeletion", "false");
-};
-
+G
 toggleDeleteConfirm.addEventListener("change", function(){
     if (AerusW_mode === true) {
         toggleDeleteConfirm.checked = false;
