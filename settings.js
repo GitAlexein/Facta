@@ -98,6 +98,11 @@ toggleGreeting.addEventListener("change", function(){
     };
 });
 
+// Checks if showGreeting exists and creates it if it doesn't
+if (localStorage.getItem("showGreeting") === null) {
+    localStorage.setItem("showGreeting", "true");
+}
+
 // EASTEREGG - the confirmation can't be turned back on
 if (AerusW_mode === true) {
     toggleDeleteConfirm.checked = false;
