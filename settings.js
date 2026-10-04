@@ -69,7 +69,7 @@ let tdcState = localStorage.getItem("confirmTaskDeletion");
 if (tdcState === "true") {
    toggleDeleteConfirm.checked = true;
 };
-G
+
 toggleDeleteConfirm.addEventListener("change", function(){
     if (AerusW_mode === true) {
         toggleDeleteConfirm.checked = false;
