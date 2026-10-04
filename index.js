@@ -5,6 +5,7 @@ document.body.addEventListener("touchstart", function() {});
 if (!localStorage.getItem("hasVisited")) {
   localStorage.setItem("hasVisited", "true");
   localStorage.setItem("confirmTaskDeletion", "true");
+  localStorage.setItem("showGreeting", "true");
   window.location.replace("welcome.html");
 };
 
@@ -15,17 +16,29 @@ function desktopLayout() {
     let barBottom = document.getElementById("barBottom");
     let buttonTaskNew = document.getElementById("buttonTaskNew");
     let body = document.getElementById("indexPage");
+    let toggleGreetingStatus = localStorage.getItem("showGreeting");
     // The bar is only moved when it is in the wrong place: re-appending it detaches
     // The node and blurs the input inside, which closes the keyboard on mobile
     if (width >= 1000) {
-        if (barBottom.parentElement !== barTop) {
-            barTop.appendChild(barBottom);
-        };
+        if (toggleGreetingStatus === "false") {
+            body.prepend(barBottom);
+            barBottom.style.width = "fit-content";
+            barBottom.style.margin = "auto";
+            barBottom.style.marginTop = "32px";
+        } else if (barBottom.parentElement !== barTop) {
+            barTop.append(barBottom);
+            barBottom.style.margin = "";
+        }
         buttonTaskNew.firstElementChild.style.display = "none";
-    } else {
+    } else if (toggleGreetingStatus !== "false") {
         if (barBottom.parentElement !== body) {
             body.appendChild(barBottom);
         };
+        buttonTaskNew.firstElementChild.style.display = "";
+    } else {
+        body.appendChild(barBottom);
+        barBottom.style.margin = "";
+        barBottom.style.width = "";
         buttonTaskNew.firstElementChild.style.display = "";
     }
 }
@@ -63,56 +76,61 @@ window.addEventListener("resize", function() {
     desktopLayout();
 })
 
-// Reads greeting and name
-let greeting = document.getElementById("greeting");
-let name = document.getElementById("name");
+// Checks if the greeting is disabled
+if (localStorage.getItem("showGreeting") !== "false") {
+    // Reads greeting and name
+    let greeting = document.getElementById("greeting");
+    let name = document.getElementById("name");
 
-// Displays name
-let nameSaved = localStorage.getItem("name");
-if (nameSaved !== null && nameSaved !== "") {
-    let nameEdited = ` ${nameSaved.trim()}`;
-    name.innerText = nameEdited;
-};
-// Warns about the easteregg being active
-eastereggAlert("name");
-
-// Displays greeting
-let date = new Date();
-let hour = date.getHours();
-
-if (hour < 6) {
-    greeting.innerText = "Ciao";
-} else if (hour < 12) {
-    greeting.innerText = "Buongiorno";
-} else if (hour < 18) {
-    greeting.innerText = "Buon pomeriggio";
-} else {
-    greeting.innerText = "Buonasera";
-};
-
-// Reads encouragement
-let encouragement = document.getElementById("encouragement");
-
-// Dynamic encouragement function
-function renderEncouragement(){
-    let tasks = taskStore.getAll();
-    let taskNumber = tasks.length;
-    let taskDoneNumber = tasks.filter(t => t.done === true).length;
-
-    if (taskNumber === taskDoneNumber && taskNumber > 1) {
-        encouragement.innerText = "Ce l'hai fatta!";
-    } else if (taskNumber === 0) {
-        encouragement.innerText = "Crea la prima task!";
-    } else if (taskNumber >= 1 && taskDoneNumber < 1) {
-        encouragement.innerText = "Comincia a completare le tue task";
-    } else if (taskDoneNumber >= taskNumber*0.75) {
-        encouragement.innerText = "Continua così...";
-    } else if (taskDoneNumber >= taskNumber*0.5) {
-        encouragement.innerText = "Ci sei quasi...";
-    } else if (taskDoneNumber >= 1) {
-        encouragement.innerText = "Continua così!";
+    // Displays name
+    let nameSaved = localStorage.getItem("name");
+    if (nameSaved !== null && nameSaved !== "") {
+        let nameEdited = ` ${nameSaved.trim()}`;
+        name.innerText = nameEdited;
     };
-};
+    // Warns about the easteregg being active
+    eastereggAlert("name");
+
+    // Displays greeting
+    let date = new Date();
+    let hour = date.getHours();
+
+    if (hour < 6) {
+        greeting.innerText = "Ciao";
+    } else if (hour < 12) {
+        greeting.innerText = "Buongiorno";
+    } else if (hour < 18) {
+        greeting.innerText = "Buon pomeriggio";
+    } else {
+        greeting.innerText = "Buonasera";
+    };
+
+    // Reads encouragement
+    let encouragement = document.getElementById("encouragement");
+
+    // Dynamic encouragement function
+    function renderEncouragement(){
+        let tasks = taskStore.getAll();
+        let taskNumber = tasks.length;
+        let taskDoneNumber = tasks.filter(t => t.done === true).length;
+
+        if (taskNumber === taskDoneNumber && taskNumber > 1) {
+            encouragement.innerText = "Ce l'hai fatta!";
+        } else if (taskNumber === 0) {
+            encouragement.innerText = "Crea la prima task!";
+        } else if (taskNumber >= 1 && taskDoneNumber < 1) {
+            encouragement.innerText = "Comincia a completare le tue task";
+        } else if (taskDoneNumber >= taskNumber*0.75) {
+            encouragement.innerText = "Continua così...";
+        } else if (taskDoneNumber >= taskNumber*0.5) {
+            encouragement.innerText = "Ci sei quasi...";
+        } else if (taskDoneNumber >= 1) {
+            encouragement.innerText = "Continua così!";
+        };
+    };
+} else {
+    barTop.remove();
+}
 
 // Reads the empty list view (div)
 let emptyListView = document.getElementById("emptyListView");
@@ -254,31 +272,34 @@ function deleteTask(id) {
 
 // FUNCTION - Renders task list
 function renderTaskList() {
-let tasks = taskStore.getAll()
-let taskView = document.getElementById("taskView");
-if (tasks.length === 0) {
-    taskView.style.display = "none";
-    emptyListView.style.display = "flex";
-} else {
-    taskView.style.display = "";
-    emptyListView.style.display = "none";
-    let taskListView = tasks.map(function(task) {
-        return `
-            <div class="task">
-                <label class="label-checkbox">
-                    <input type="checkbox" class="task-checkbox" ${task.done === true ? "checked" : ""} onchange="toggleTask(${task.id})">
-                    <img src="assets/checkbox todo.svg" alt="" class="checkbox-icon todo">
-                    <img src="assets/checkbox done.svg" alt="" class="checkbox-icon done">
-                </label>
-                <span class="task-text" style="overflow-wrap: break-word;" id="text-${task.id}" onclick="updateInputShow(${task.id})">${task.text}</span>
-                <input type="text" style="display: none;" id="input-${task.id}" onkeydown="updateInputSave(${task.id}, event)">
-                <button class="button button-tertiary-icon" onclick="deleteTask(${task.id})">
-                    <img src="assets/trash tertiary.svg" alt="Elimina questo obiettivo" style="height: 24px; cursor: pointer;">    
-                </button>
-            </div>
-                `;
-    });
-    taskView.innerHTML = taskListView.join(" ");
+    let tasks = taskStore.getAll()
+    let taskView = document.getElementById("taskView");
+    if (tasks.length === 0) {
+        taskView.style.display = "none";
+        emptyListView.style.display = "flex";
+    } else {
+        taskView.style.display = "";
+        emptyListView.style.display = "none";
+        let taskListView = tasks.map(function(task) {
+            return `
+                <div class="task">
+                    <label class="label-checkbox">
+                        <input type="checkbox" class="task-checkbox" ${task.done === true ? "checked" : ""} onchange="toggleTask(${task.id})">
+                        <img src="assets/checkbox todo.svg" alt="" class="checkbox-icon todo">
+                        <img src="assets/checkbox done.svg" alt="" class="checkbox-icon done">
+                    </label>
+                    <span class="task-text" style="overflow-wrap: break-word;" id="text-${task.id}" onclick="updateInputShow(${task.id})">${task.text}</span>
+                    <input type="text" style="display: none;" id="input-${task.id}" onkeydown="updateInputSave(${task.id}, event)">
+                    <button class="button button-tertiary-icon" onclick="deleteTask(${task.id})">
+                        <img src="assets/trash tertiary.svg" alt="Elimina questo obiettivo" style="height: 24px; cursor: pointer;">    
+                    </button>
+                </div>
+                    `;
+        });
+        taskView.innerHTML = taskListView.join(" ");
     };
-    renderEncouragement();
-    };
+    // Checks if greeting is disabled to render the encouragement
+    if (localStorage.getItem("showGreeting") !== "false") {
+        renderEncouragement();
+    }
+};

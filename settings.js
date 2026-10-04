@@ -70,12 +70,6 @@ if (tdcState === "true") {
    toggleDeleteConfirm.checked = true;
 };
 
-// EASTEREGG - the confirmation can't be turned back on
-if (AerusW_mode === true) {
-    toggleDeleteConfirm.checked = false;
-    localStorage.setItem("confirmTaskDeletion", "false");
-};
-
 toggleDeleteConfirm.addEventListener("change", function(){
     if (AerusW_mode === true) {
         toggleDeleteConfirm.checked = false;
@@ -88,3 +82,24 @@ toggleDeleteConfirm.addEventListener("change", function(){
         localStorage.setItem("confirmTaskDeletion", "false");
     };
 });
+
+// Toggle for showing the greeting in index.html
+let toggleGreeting = document.getElementById("toggleGreeting");
+let toggleGreetingState = localStorage.getItem("showGreeting")
+if (toggleGreetingState === "true") {
+   toggleGreeting.checked = true;
+};
+
+toggleGreeting.addEventListener("change", function(){
+    if (toggleGreeting.checked === true) {
+        localStorage.setItem("showGreeting", "true");
+    } else {
+        localStorage.setItem("showGreeting", "false");
+    };
+});
+
+// EASTEREGG - the confirmation can't be turned back on
+if (AerusW_mode === true) {
+    toggleDeleteConfirm.checked = false;
+    localStorage.setItem("confirmTaskDeletion", "false");
+};
