@@ -130,7 +130,6 @@ if (localStorage.getItem("showGreeting") !== "false") {
     };
 } else {
     barTop.remove();
-    desktopLayout();
 }
 
 // Reads the empty list view (div)
