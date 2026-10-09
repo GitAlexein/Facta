@@ -75,7 +75,7 @@ body {
 footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     padding: 32px;
     gap: 48px;
@@ -459,15 +459,14 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 32px;
+    padding-left: 24%;
+    padding-right: 24%;
 }
 
-/* Praxisum · Github · Youtube · Instagram · Discord · Email */
+/* Praxisum · Github · Youtube · Instagram · Email */
 footer .div-footer:nth-child(1) a:nth-child(1) { order: 1; }
 footer .div-footer:nth-child(1) a:nth-child(2) { order: 2; }
 footer .div-footer:nth-child(1) a:nth-child(3) { order: 3; }
 footer .div-footer:nth-child(2) a:nth-child(1) { order: 4; }
-footer .div-footer:nth-child(2) a:nth-child(2) { order: 5; }
 footer .div-footer:nth-child(2) a:nth-child(3) { order: 6; }
-
 }
