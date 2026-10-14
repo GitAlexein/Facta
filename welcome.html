@@ -29,7 +29,10 @@
     <div class="bar bar-bottom" style= "gap: 16px;" id="barBottom">
         <span><h2>Come ti chiami?</h2></span>
         <span style="margin-top: -16px;">Questa informazione serve solo a salutarti ogni volta che userai Facta.</span>
-        <input type="text" placeholder="Inserisci un nome" id="inputNameNew" enterkeyhint="done">
+        <!-- A real form: the return key on mobile keyboards submits it natively (implicit submission) -->
+        <form style="width: 100%;" id="formNameNew" autocomplete="off">
+            <input type="text" placeholder="Inserisci un nome" id="inputNameNew" enterkeyhint="go">
+        </form>
         <button class="button button-primary" style="width: 100%;" id="buttonNameNew">
             <span>Conferma</span>
             <span style="display: flex;"><img src="assets/arrow primary.svg" alt=""></span>

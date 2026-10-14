@@ -40,6 +40,7 @@ window.addEventListener("resize", function() {
 
 // Reads buttons and inputs
 let inputNameNew = document.getElementById("inputNameNew");
+let formNameNew = document.getElementById("formNameNew");
 let buttonNameNew = document.getElementById("buttonNameNew");
 let buttonSkipName = document.getElementById("buttonSkipName")
 
@@ -48,10 +49,11 @@ buttonNameNew.addEventListener("click", function(){
     saveName();
 });
 
-inputNameNew.addEventListener("keydown", function(e){
-    if (e.key === "Enter") {
-        saveName()
-    }
+// The submit event is used instead of keydown: mobile keyboards (iOS in particular) do not
+// Reliably report the return key as "Enter", but they always submit the form it belongs to
+formNameNew.addEventListener("submit", function(e){
+    e.preventDefault();                               // Stops the page from reloading
+    saveName()
 });
 
 // Saves name

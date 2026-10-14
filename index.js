@@ -213,17 +213,18 @@ function finalizeTask() {
 let errorTaskEmpty = document.getElementById("errorTaskEmpty");
 
 // Saves input in localStorage
-inputTaskNew.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-        if (inputTaskNew.value.trim() === "qualcosa" || inputTaskNew.value.trim() === "Qualcosa" || inputTaskNew.value.trim() === "qualcosa." || inputTaskNew.value.trim() === "Qualcosa.") {
-            finalizeTask();
-            alert("sei troppo divertente, ora siamo amici");
-        } else if (inputTaskNew.value.trim() !== "") {
-            finalizeTask();
-        } else {
-            inputTaskNew.style.borderColor = "var(--danger-accent)";
-            errorTaskEmpty.style.display = "";        // Shows error message
-        };
+// The submit event is used instead of keydown: mobile keyboards (iOS in particular) do not
+// Reliably report the return key as "Enter", but they always submit the form it belongs to
+inputTaskNewDiv.addEventListener("submit", function(e) {
+    e.preventDefault();                               // Stops the page from reloading
+    if (inputTaskNew.value.trim() === "qualcosa" || inputTaskNew.value.trim() === "Qualcosa" || inputTaskNew.value.trim() === "qualcosa." || inputTaskNew.value.trim() === "Qualcosa.") {
+        finalizeTask();
+        alert("sei troppo divertente, ora siamo amici");
+    } else if (inputTaskNew.value.trim() !== "") {
+        finalizeTask();
+    } else {
+        inputTaskNew.style.borderColor = "var(--danger-accent)";
+        errorTaskEmpty.style.display = "";            // Shows error message
     };
 });
 
@@ -235,26 +236,28 @@ function toggleTask(id) {
 
 // FUNCTION - Updates task
 function updateInputShow(id) {
+    let form = document.getElementById(`form-${id}`);
     let input = document.getElementById(`input-${id}`);
     let text = document.getElementById(`text-${id}`);
     text.style.display = "none";
     input.value = text.innerText;
-    input.style.display = "block";
+    form.style.display = "block";
     input.focus();
 };
 
+// Called by the form's submit event, for the same reason as the new-task form above
 function updateInputSave(id, e) {
+    e.preventDefault();                               // Stops the page from reloading
+    let form = document.getElementById(`form-${id}`);
     let input = document.getElementById(`input-${id}`);
     let text = document.getElementById(`text-${id}`)
-    if (e.key === "Enter") {
-        if (input.value.trim() !== "") {
-            taskStore.update(id, input.value.trim());
-            input.style.display = "";
-            text.style.display = "block";
-            renderTaskList();
-        } else {
-            alert("Non si possono salvare task vuote! Se vuoi eliminare questa task clicca sul cestino.");
-        };
+    if (input.value.trim() !== "") {
+        taskStore.update(id, input.value.trim());
+        form.style.display = "";
+        text.style.display = "block";
+        renderTaskList();
+    } else {
+        alert("Non si possono salvare task vuote! Se vuoi eliminare questa task clicca sul cestino.");
     };
 };
 
@@ -289,7 +292,9 @@ function renderTaskList() {
                         <img src="assets/checkbox done.svg" alt="" class="checkbox-icon done">
                     </label>
                     <span class="task-text" style="overflow-wrap: break-word;" id="text-${task.id}" onclick="updateInputShow(${task.id})">${task.text}</span>
-                    <input type="text" style="display: none;" id="input-${task.id}" enterkeyhint="done" onkeydown="updateInputSave(${task.id}, event)">
+                    <form style="flex: 1; display: none;" id="form-${task.id}" autocomplete="off" onsubmit="updateInputSave(${task.id}, event)">
+                        <input type="text" id="input-${task.id}" enterkeyhint="done">
+                    </form>
                     <button class="button button-tertiary-icon" onclick="deleteTask(${task.id})">
                         <img src="assets/trash tertiary.svg" alt="Elimina questo obiettivo" style="height: 24px; cursor: pointer;">    
                     </button>

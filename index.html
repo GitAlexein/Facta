@@ -41,10 +41,11 @@
             <span>Aggiungi una task</span>
             <span style="display: flex;"><img src="assets/plus primary.svg" alt=""></span>
         </button>
-        <div style="flex: 1; display: none; flex-direction: column;" id="inputTaskNewDiv">
-            <input type="text" id="inputTaskNew" placeholder="Inserisci la task" enterkeyhint="done">
+        <!-- A real form: the return key on mobile keyboards submits it natively (implicit submission) -->
+        <form style="flex: 1; display: none; flex-direction: column;" id="inputTaskNewDiv" autocomplete="off">
+            <input type="text" id="inputTaskNew" placeholder="Inserisci la task" enterkeyhint="send">
             <span class="text-info" style="color: var(--danger-accent); margin-top: 4px; display: none;" id="errorTaskEmpty">La task è vuota! Prova a scrivere qualcosa.</span>
-        </div>
+        </form>
         <button class="button button-secondary" id="buttonSettings">
             <img src="assets/settings secondary.svg" alt="Apri le impostazioni">
         </button>
